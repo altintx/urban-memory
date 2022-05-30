@@ -1,5 +1,5 @@
 import express from 'express';
-import http from 'http';
+import * as http from 'http';
 import { Server } from 'socket.io';
 
 const app = express();
@@ -24,6 +24,6 @@ io.on('connection', (socket) => {
 app.use(express.static('public'))
 
 const port = process.env["PORT"] || "3000";
-server.listen(port, "0.0.0.0", () => {
-    console.log(`Listening on http://localhost:${port}`)
-})
+server.listen(port, () => {
+    console.log(`Listening on http://localhost:${port}`);
+});
