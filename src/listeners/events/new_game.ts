@@ -3,10 +3,11 @@ import { newGame, transferOperatorOrEnd } from "../../models/game";
 import { setGame as setOperatorGame } from "../../models/core/operator";
 import { getOperator, setGame } from "../../sessions";
 import joinedGameAnnouncement from "../announcements/joined_game";
+import notLoggedInAnnouncement from "../announcements/not_logged_in";
 
 export function newGameMessage(socket: Socket): boolean {
     const operator = getOperator(socket);
-    if(!operator) return socket.emit("message", { "error": "Not logged in" })
+    if(!operator) return notLoggedInAnnouncement(socket);
     if(operator.game) {
         transferOperatorOrEnd(operator.game, operator);
     }
