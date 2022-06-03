@@ -1,0 +1,22 @@
+{
+    "missions": [
+        {
+            "mission": "the_shed",
+            "name": {
+                "en": "The Shed"
+            },
+            "description": {
+                "en": "Recover the co-op director from the coop."
+            }
+        },
+        {
+            "mission": "boss_fight"
+        }
+    ],
+    "name": {
+        "en": "Campaign Mode"
+    },
+    "description": {
+        "en": "This might be the 'Story Mode'"
+    }
+}

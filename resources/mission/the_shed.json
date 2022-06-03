@@ -1,0 +1,59 @@
+{
+    "theme": "city",
+    "time": "daytime",
+    "weather": "rain",
+    "maxCharacters": 1,
+    "map": "backyard.json",
+    "waves": 1,
+    "spawnPoints": [
+        {
+            "type": "operator",
+            "wave": 0,
+            "index": 0,
+            "point": [0, 1]      // first character on plane[0][1]
+        },
+        {
+            "type": "operator",
+            "wave": 0,
+            "index": 1,
+            "points": [0, 3]     // second character on plane[0][3]
+                                 // but maxCharacters=1 means this is
+                                 // ignored
+        },
+        {
+            "type": "enemy",
+            "uuid": "04feea48-c815-4cec-8d26-6d56218495da",
+            "wave": 0,
+            "point": [1, 4]
+        },
+        {
+            "type": "vip",
+            "uuid": "be7a9651-66b9-4d1b-931b-d177dfbd1170",
+            "wave": 0,
+            "point": [0, 4]
+        }
+    ],
+    "characters": [
+        {
+            "uuid": "04feea48-c815-4cec-8d26-6d56218495da",
+            "class": "sniper",
+            "race": "human"
+
+        },
+        {
+            "uuid": "be7a9651-66b9-4d1b-931b-d177dfbd1170",
+            "class": "civilian",
+            "race": "human"
+        }
+    ],
+    "objectives": [
+        {
+            "type": "find_hostage",
+            "wave": 0
+        },
+        {
+            "type": "everyone_survives",
+            "wave": 0
+        }
+    ]
+}

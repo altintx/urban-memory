@@ -1,0 +1,88 @@
+{
+    "width": 3,
+    "height": 3,
+    "planes": [
+        [
+            {
+                "type": "ground"
+            },
+            {
+                "type": "ground"
+            },
+            {
+                "type": "ground"
+            },
+            {
+                "type": "ground"
+            },
+            {
+                "type": "ground"
+            },
+            {
+                "type": "ground"
+            },
+            {
+                "type": "ground"
+            },
+            {
+                "type": "ground",
+                "obstacle": {
+                    "type": "boulder",
+                    "destructable": false
+                }
+            },
+            {
+                "type": "ground"
+            }
+        ],
+        [
+            {
+                "type": "air"
+            },
+            {
+                "type": "air"
+            },
+            {
+                "type": "air"
+            },
+            {
+                "type": "air"
+            },
+            {
+                "type": "roof"
+            },
+            {
+                "type": "air"
+            },
+            {
+                "type": "air"
+            },
+            {
+                "type": "air"
+            },
+            {
+                "type": "air"
+            }
+        ]
+    ],
+    "walls": [
+        {
+            "index": 4,
+            "direction": "north",
+            "type": "wall",
+            "texture": "plywood"
+        },
+        {
+            "index": 4,
+            "direction": "east",
+            "type": "wall",
+            "texture": "plywood"
+        },
+        {
+            "index": 4,
+            "direction": "west",
+            "type": "wall",
+            "texture": "plywood"
+        }
+    ]
+}
