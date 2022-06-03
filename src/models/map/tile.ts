@@ -14,9 +14,6 @@ type Wall = {
 type Tile = {
     elevation: number;
     occupant?: Character | Obstacle;
-    destructive: boolean;
-    destructable: boolean;
-    visible: boolean;
     wall: Wall[];
 }
 
