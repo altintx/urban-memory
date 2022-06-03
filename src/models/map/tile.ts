@@ -8,6 +8,7 @@ type Wall = {
     cover: Cover;
     type: WallType;
     destructable: boolean;
+    openable: boolean; // doors
 }
 
 type Tile = {
