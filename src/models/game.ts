@@ -4,14 +4,14 @@ import { endGame, setGame } from '../sessions';
 import { Character } from './characters/character';
 import { Difficulty } from './core/difficulty';
 import { Operator } from './core/operator';
-import { Map } from './map/map';
-import { Mission } from './missions/mission';
+import { Campaign, parseCampaign } from './campaign';
+
 enum Visibility { Public, Private };
+
 type Game = {
     characters: Character[];
     workingSquad: Character[];
-    maps: Map[];
-    missions: Mission[];
+    campaign: Campaign,
     difficulty: Difficulty;
     gameId: string;
     operators: Operator[];
@@ -25,10 +25,9 @@ function addCharacter(character: Character, game: Game): Game {
 function newGame(): Game {
     return {
         characters: [],
-        missions: [],
+        campaign: parseCampaign(require('../../resources/campaign.json')),
         difficulty: Difficulty.Easy,
         workingSquad: [],
-        maps: [],
         gameId: randomUUID(),
         operators: [],
         visibility: Visibility.Public

@@ -4,6 +4,14 @@ type Objective = {
     long: string;
     resolver: (game: Game) => boolean;
 }
+function parseObjective(json: any): Objective {
+    return {
+        short: json['short'] || '',
+        long: json['long'] || '',
+        resolver: eval(json['resolver'] || '(game) => false')
+    }
+}
 export {
-    Objective
+    Objective,
+    parseObjective
 };

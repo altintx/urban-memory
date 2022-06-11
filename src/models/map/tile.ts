@@ -1,25 +1,35 @@
+import { enumValue } from "../../utility/enum";
 import { Character } from "../characters/character";
 import { Obstacle } from "../obstacle/obstacle";
 
 enum Cover { None, Half, Full };
 enum WallType { Fence, Wall };
 
-type Wall = {
-    cover: Cover;
-    type: WallType;
-    destructable: boolean;
-    openable: boolean; // doors
-}
-
 type Tile = {
     elevation: number;
     occupant?: Character | Obstacle;
-    wall: Wall[];
+    cover: Cover;
+    type?: WallType;
+    destructable: boolean;
+    destructive: boolean;
+    openable: boolean; // doors
+}
+
+function parseTile(json: object): Tile {
+    return {
+        elevation: parseInt(json['elevation']),
+        occupant: null,
+        cover: enumValue(json['cover'], Cover),
+        type: enumValue(json['type'], WallType, null),
+        destructable: !!json['destructable'],
+        destructive: !!json['destructive'],
+        openable: !!json['openable']
+    }
 }
 
 export {
     Tile,
     Cover,
     WallType,
-    Wall
+    parseTile
 };

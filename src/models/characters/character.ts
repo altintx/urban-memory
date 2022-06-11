@@ -1,6 +1,7 @@
+import { enumValue } from "../../utility/enum";
 import { Operator } from "../core/operator";
-import {Class} from "./class";
-import {Race} from "./race";
+import {Class, parseClass} from "./class";
+import {parseRace, Race} from "./race";
 
 enum Faction { Player, Enemy }
 
@@ -13,7 +14,19 @@ type Character = {
     name: string;
 }
 
+function parseCharacter(json: any): Character {
+    return {
+        operator: null,
+        class: parseClass(json['class']),
+        race: parseRace(json['race']),
+        faction: enumValue(json['faction'], Faction),
+        alive: !!json['alive'],
+        name: json['name'] || 'John Doe'
+    }
+}
+
 export {
     Character,
-    Faction
+    Faction,
+    parseCharacter
 };
