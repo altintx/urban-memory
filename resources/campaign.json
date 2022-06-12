@@ -18,5 +18,7 @@
     },
     "description": {
         "en": "This might be the 'Story Mode'"
-    }
+    },
+    "timeOfDay": "DAYTIME",
+    "weather": "RAINING"
 }
