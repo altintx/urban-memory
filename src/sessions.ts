@@ -35,7 +35,7 @@ function setGame(game: Game): void {
 
 function getGames(scope: Visibility | null): Game[] {
     let games = Object.values(gamesMap);
-    if (scope) {
+    if (scope !== null) {
         games = games.filter(g => g.visibility === scope);
     }
     return games;
