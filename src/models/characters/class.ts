@@ -1,15 +1,12 @@
+import { Translatable } from "../../utility/strings";
+
 type Class = {
-    name: string;
+    name: Translatable;
 }
-const registry: { [key: string]: Class } = {}
 function parseClass(json: object): Class {
-    const name = json['name'];
-    if(!registry[name]) {
-        registry[name] = {
-            name: name
-        }
-    } 
-    return registry[name];
+    return {
+        name: new Translatable(json['name'])
+    }
 }
 export {
     Class,

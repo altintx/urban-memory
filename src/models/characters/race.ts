@@ -1,15 +1,12 @@
+import { Translatable } from "../../utility/strings";
+
 type Race = {
-    name: string;
+    name: Translatable;
 }
-const registry: { [key: string]: Race } = {}
 function parseRace(json: object): Race {
-    const name = json['name'];
-    if(!registry[name]) {
-        registry[name] = {
-            name: name
-        }
-    } 
-    return registry[name];
+    return {
+        name: new Translatable(json['name'])
+    }
 }
 
 export {

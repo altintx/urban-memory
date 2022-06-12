@@ -1,4 +1,5 @@
 import { enumValue } from "../../utility/enum";
+import { Translatable } from "../../utility/strings";
 import { Operator } from "../core/operator";
 import {Class, parseClass} from "./class";
 import {parseRace, Race} from "./race";
@@ -11,7 +12,7 @@ type Character = {
     race: Race;
     faction: Faction;
     alive: boolean;
-    name: string;
+    name: Translatable;
 }
 
 function parseCharacter(json: any): Character {
@@ -21,7 +22,7 @@ function parseCharacter(json: any): Character {
         race: parseRace(json['race']),
         faction: enumValue(json['faction'], Faction),
         alive: !!json['alive'],
-        name: json['name'] || 'John Doe'
+        name: new Translatable(json['name'])
     }
 }
 

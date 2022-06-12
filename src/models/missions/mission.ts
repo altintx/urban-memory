@@ -1,4 +1,5 @@
 import { enumValue } from "../../utility/enum";
+import { Translatable } from "../../utility/strings";
 import { Character, parseCharacter } from "../characters/character";
 import { Map, parseMap } from "../map/map";
 import { Objective, parseObjective } from "./objective";
@@ -11,6 +12,8 @@ type Mission = {
     map: Map;
     objectives: Objective[];
     enemies: Character[];
+    name: Translatable;
+    description: Translatable;
 };
 
 function parseMission(json: object): Mission {
@@ -19,7 +22,9 @@ function parseMission(json: object): Mission {
         weather: enumValue(json['weather'], Weather),
         map: parseMap(json['map']),
         objectives: json['objectives'].map(json => parseObjective(json)),
-        enemies: json['enemies'].map(json => parseCharacter(json))
+        enemies: json['enemies'].map(json => parseCharacter(json)),
+        name: new Translatable(json['name']),
+        description: new Translatable(json['description'])
     }
     return mission;
 }
