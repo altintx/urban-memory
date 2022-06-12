@@ -10,8 +10,6 @@ type Tile = {
     occupant?: Character | Obstacle;
     cover: Cover;
     type?: WallType;
-    destructable: boolean;
-    destructive: boolean;
     openable: boolean; // doors
 }
 
@@ -21,8 +19,6 @@ function parseTile(json: object): Tile {
         occupant: null,
         cover: enumValue(json['cover'], Cover),
         type: enumValue(json['type'], WallType, null),
-        destructable: !!json['destructable'],
-        destructive: !!json['destructive'],
         openable: !!json['openable']
     }
 }
