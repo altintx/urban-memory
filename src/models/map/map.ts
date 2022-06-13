@@ -1,4 +1,4 @@
-import { parseTile, Tile } from './tile';
+import { parseTile, Tile } from '@app/models/map/tile';
 type Map = {
     grid: Tile[]; // y * height + x
     width: number;

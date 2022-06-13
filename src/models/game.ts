@@ -2,11 +2,13 @@ import { randomUUID } from 'crypto';
 import leftGameAnnouncement from '../listeners/announcements/left_game';
 import { endGame, setGame } from '../sessions';
 import { Character } from './characters/character';
-import { Difficulty } from './core/difficulty';
 import { Operator } from './core/operator';
 import { Campaign, parseCampaign } from './campaign';
 
 enum Visibility { Public, Private };
+enum Difficulty {
+    Easy, Hard
+};
 
 type Game = {
     characters: Character[];
@@ -59,5 +61,6 @@ export {
     newGame,
     transferOperatorOrEnd,
     join,
-    Visibility
+    Visibility,
+    Difficulty
 };

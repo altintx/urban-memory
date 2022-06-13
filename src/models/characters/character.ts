@@ -1,8 +1,8 @@
-import { enumValue } from "../../utility/enum";
-import { Translatable } from "../../utility/strings";
-import { Operator } from "../core/operator";
-import {Class, parseClass} from "./class";
-import {parseRace, Race} from "./race";
+import { enumValue } from "@app/utility/enum";
+import { Translatable } from "@app/utility/strings";
+import { Operator } from "@app/models/core/operator";
+import {Class, parseClass} from "@app/models/characters/class";
+import {parseRace, Race} from "@app/models/characters/race";
 
 enum Faction { Player, Enemy }
 

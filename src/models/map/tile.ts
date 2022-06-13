@@ -1,6 +1,6 @@
-import { enumValue } from "../../utility/enum";
-import { Character } from "../characters/character";
-import { Obstacle } from "../obstacle/obstacle";
+import { enumValue } from "@app/utility/enum";
+import { Character } from "@app/models/characters/character";
+import { Obstacle } from "@app/models/obstacle/obstacle";
 
 enum Cover { None, Half, Full };
 enum WallType { Fence, Wall };
