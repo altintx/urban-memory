@@ -6,6 +6,7 @@ type Obstacle = {
     destructable: boolean;
     visible: boolean;
     coverBonus: number;
+    destroyed: boolean;
 }
 
 function parseObstacle(json: object): Obstacle {
@@ -14,6 +15,7 @@ function parseObstacle(json: object): Obstacle {
         destructable: !!json['destructable'],
         destructive: !!json['destructive'],
         visible: !!json['visible'],
+        destroyed: !!json['destroyed'],
         coverBonus: Infinity,
     }
 }

@@ -1,4 +1,4 @@
 export class Base {
-    applies() { return true; } 
+    // just a holding pen
 }
 

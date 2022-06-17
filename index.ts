@@ -1,4 +1,4 @@
-import express from 'express';
+import * as express from 'express';
 import * as http from 'http';
 import { Server } from 'socket.io';
 import { listen } from './src/listeners/initialization';

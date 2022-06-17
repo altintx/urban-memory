@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { Socket } from "socket.io";
-import { Game } from "@app/models/game";
-import { setGame as setSessionGame } from '@app/sessions';
+import { Game } from "../game";
+import { setGame as setSessionGame } from '../../sessions';
 type Operator = {
     name: string;
     socket: Socket;

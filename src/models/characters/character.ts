@@ -1,8 +1,8 @@
-import { enumValue } from "@app/utility/enum";
-import { Translatable } from "@app/utility/strings";
-import { Operator } from "@app/models/core/operator";
-import {Class, parseClass} from "@app/models/characters/class";
-import {parseRace, Race} from "@app/models/characters/race";
+import { enumValue } from "../../utility/enum";
+import { Translatable } from "../../utility/strings";
+import { Operator } from "../core/operator";
+import {Class, parseClass} from "./class";
+import {parseRace, Race} from "./race";
 import { Base } from "./traits/base";
 
 enum Faction { Player, Enemy }
@@ -37,10 +37,21 @@ function isPlayer(character: Character): boolean {
     return character.faction === Faction.Player;
 }
 
+const CharacterType: Character = { 
+    alive: false,
+    class: null,
+    faction: null,
+    name: null,
+    operator: null,
+    race: null,
+    traits: []
+};
+
 export {
     Character,
     Faction,
     parseCharacter,
     hasTrait,
     isPlayer,
+    CharacterType
 };

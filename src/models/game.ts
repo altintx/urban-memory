@@ -4,6 +4,7 @@ import { endGame, setGame } from '../sessions';
 import { Character } from './characters/character';
 import { Operator } from './core/operator';
 import { Campaign, parseCampaign } from './campaign';
+import { Mission } from './missions/mission';
 
 enum Visibility { Public, Private };
 enum Difficulty {
@@ -17,7 +18,8 @@ type Game = {
     difficulty: Difficulty;
     gameId: string;
     operators: Operator[];
-    visibility: Visibility
+    visibility: Visibility;
+    activeMission?: Mission;
 }
 
 function addCharacter(character: Character, game: Game): Game {

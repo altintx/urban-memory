@@ -1,4 +1,4 @@
-import { Translatable } from "@app/utility/strings";
+import { Translatable } from "../../utility/strings";
 
 type Class = {
     name: Translatable;

@@ -1,10 +1,13 @@
-import { Character, hasTrait, isPlayer } from '@app/models/characters/character';
-import { Game } from '@app/models/game';
-import { Weapon } from '@app/models/characters/weapon';
+import { Character, CharacterType, hasTrait, isPlayer } from '../characters/character';
+import { Game } from '../game';
+import { Weapon } from '../characters/weapon';
 import { lucky, LuckyTrait } from '../characters/traits/lucky';
 import { Obstacle } from '../obstacle/obstacle';
 import { flatten } from 'array-flatten';
 import { difficultyBuff } from '../core/difficulty';
+import { at, getRing } from '../map/map';
+import { Tile } from '../map/tile';
+import { isA } from '../../utility/types';
 
 enum AttackType { Targetted, AOE }; 
 type Coordinates = {
@@ -13,7 +16,7 @@ type Coordinates = {
     elevation: number;
 }
 type DamageInfliction = {
-    target: Character;
+    target: Character | Obstacle;
     baseDamage: number;
     critical: boolean;
 }
@@ -31,9 +34,10 @@ const roll = sides => 1 + Math.floor(Math.random() * sides);
 
 function compute(attack: Attack, game: Game): DamageInfliction[] {
     if(attack.type === AttackType.Targetted) return computeTarget(attack, game);
-    computeAOE(attack, game);
+    return computeAOE(attack, game);
 }
 const obstaclesBetween = (point1: Character, point2: Character): Obstacle[] => {
+    // todo: Implement
     return [];
 }
 function coverBonus(attack: Attack): number {
@@ -72,8 +76,32 @@ function computeAOE(attack: Attack, game: Game): DamageInfliction[] {
    // determine aoe center
    // determine attack radius
    // find characters in that radius
-   // issue a targettedAtack on eacg for a fraction of weapon's damage diminishing on distance from epicenter
-   return [];
+   // issue a targettedAtack on each for a fraction of weapon's damage diminishing on distance from epicenter
+   // todo: how to omit "covered" tiles
+   const withDistance = (distance, o) => ({ distance, ...o });
+   const coordinates = <Coordinates>attack.target;
+   const map = game.activeMission.map;
+   const epicenter = at(map, coordinates.x, coordinates.y);
+   const spread = attack.weapon.spread;
+   let blastZone = [epicenter];
+   for (let index = 1; index < spread; index++) {
+       blastZone = blastZone.concat(getRing(map, coordinates.x, coordinates.y, index).map(t => withDistance(index, t)))
+   }
+   return blastZone
+        .filter((tile: Tile) => {
+            const isCharacter = isA(tile.occupant, CharacterType);
+            const isObstacle =  (tile.occupant && (<Obstacle>tile.occupant).destructable)
+            return isCharacter || isObstacle;
+        })
+        .map((tile: Tile): DamageInfliction => {
+            const diminished = (1 + spread - tile['distance']) / (spread + 1);
+            const damage = attack.weapon.damage;
+            return {
+                baseDamage: Math.ceil(damage * diminished),
+                critical: false,
+                target: tile.occupant
+            }
+        })
 }
 
 export { compute, AttackType, Attack };
