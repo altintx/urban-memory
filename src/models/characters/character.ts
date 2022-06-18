@@ -13,7 +13,7 @@ type Character = {
     race: Race;
     faction: Faction;
     alive: boolean;
-    name: Translatable;
+    name: string;
     traits: Base[];
 }
 
@@ -24,7 +24,7 @@ function parseCharacter(json: any): Character {
         race: parseRace(json['race']),
         faction: enumValue(json['faction'], Faction),
         alive: !!json['alive'],
-        name: new Translatable(json['name']),
+        name: json['name'],
         traits: []
     }
 }

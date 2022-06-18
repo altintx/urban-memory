@@ -1,12 +1,12 @@
 import { Translatable } from "@app/utility/strings"
 
-enum Class { Melee, Pistol, Rifle, Shotgun, Sniper, Grenade }
+enum WeaponType { Melee, Pistol, Rifle, Shotgun, Sniper, Grenade }
 type Weapon = {
     name: Translatable;
-    type: Class,
+    type: WeaponType,
     spread: number,
     damage: number,
     optimalDistance: number,
 }
 
-export { Weapon }
+export { Weapon, WeaponType }

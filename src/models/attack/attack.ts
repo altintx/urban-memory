@@ -27,7 +27,8 @@ type Attack = {
     flankers: Character[];
     oppressors: Character[];
     weapon: Weapon;
-    attackRoll: number;
+    attackRoll?: number;
+    defenseRoll?: number;
 }
 
 const roll = sides => 1 + Math.floor(Math.random() * sides);
@@ -55,8 +56,8 @@ function computeTarget(attack: Attack, game: Game): DamageInfliction[] {
     const target = <Character>attack.target;
     const targetFlanked = attack.flankers.length > 0;
 
-    const attackerRoll = roll(20) + lucky(attack.attacker) - (attackerUnderFire? 1: 0) + (isPlayer(attack.attacker)? difficultyBuff(game): 0);
-    const defenderRoll = roll(20) + lucky(target) - (targetFlanked? 1: 0) + coverBonus(attack) + (isPlayer(target)? difficultyBuff(game): 0);
+    const attackerRoll = attack.attackRoll || (roll(20) + lucky(attack.attacker) - (attackerUnderFire? 1: 0) + (isPlayer(attack.attacker)? difficultyBuff(game): 0));
+    const defenderRoll = attack.defenseRoll || (roll(20) + lucky(target) - (targetFlanked? 1: 0) + coverBonus(attack) + (isPlayer(target)? difficultyBuff(game): 0));
     const criticalAttack = hasTrait(attack.attacker, LuckyTrait)? [18, 19, 20]: [19, 20];
     let damage = attackerRoll - defenderRoll;
     if(damage < 0) return [];
