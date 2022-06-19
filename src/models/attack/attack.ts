@@ -60,11 +60,11 @@ function computeTarget(attack: Attack, game: Game): DamageInfliction[] {
     const defenderRoll = attack.defenseRoll || (roll(20) + lucky(target) - (targetFlanked? 1: 0) + coverBonus(attack) + (isPlayer(target)? difficultyBuff(game): 0));
     const criticalAttack = hasTrait(attack.attacker, LuckyTrait)? [18, 19, 20]: [19, 20];
     let damage = attackerRoll - defenderRoll;
-    if(damage < 0) return [];
+    if(damage <= 0) return [];
     const isCritical = criticalAttack.includes(attackerRoll);
     
     damage -= Math.min(attack.oppressors.length, 5);
-    if (damage < 0) return [];
+    if (damage <= 0) return [];
 
     return [{
         baseDamage: damage,
