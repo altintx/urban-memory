@@ -1,5 +1,6 @@
 import { enumValue } from "../../utility/enum";
 import { Translatable } from "../../utility/strings";
+import { DamageInfliction } from "../attack/attack";
 import { Operator } from "../core/operator";
 import {Class, parseClass} from "./class";
 import {parseRace, Race} from "./race";
@@ -15,6 +16,7 @@ type Character = {
     alive: boolean;
     name: string;
     traits: Base[];
+    hp: number;
 }
 
 function parseCharacter(json: any): Character {
@@ -25,7 +27,8 @@ function parseCharacter(json: any): Character {
         faction: enumValue(json['faction'], Faction),
         alive: !!json['alive'],
         name: json['name'],
-        traits: []
+        traits: [],
+        hp: parseInt(json['hp'])
     }
 }
 
@@ -44,8 +47,15 @@ const CharacterType: Character = {
     name: null,
     operator: null,
     race: null,
-    traits: []
+    traits: [],
+    hp: 0
 };
+
+function applyDamage(character: Character, damage: DamageInfliction) {
+    const critMultiplier = damage.critical? 1.5: 1;
+    character.hp -= damage.baseDamage * critMultiplier;
+    return character;
+}
 
 export {
     Character,
@@ -53,5 +63,6 @@ export {
     parseCharacter,
     hasTrait,
     isPlayer,
+    applyDamage,
     CharacterType
 };

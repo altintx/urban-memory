@@ -23,7 +23,8 @@ const character: Character = {
     name: "Hero",
     operator: null,
     traits: [],
-    race: race
+    race: race,
+    hp: 100,
 };
 const character2: Character = {
     alive: true,
@@ -32,7 +33,8 @@ const character2: Character = {
     name: "Bad Guy",
     operator: null,
     traits: [],
-    race: race
+    race: race,
+    hp: 10,
 }
 const weapon: Weapon = {
     damage: 10,

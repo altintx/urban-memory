@@ -105,4 +105,4 @@ function computeAOE(attack: Attack, game: Game): DamageInfliction[] {
         })
 }
 
-export { compute, AttackType, Attack };
+export { compute, AttackType, Attack, DamageInfliction };
