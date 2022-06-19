@@ -16,8 +16,12 @@ class OutOfBoundsError extends Error {
 
 
 function parseMap(json: any): Map {
+    const templates = (json["tileTemplates"] || {})
+    const templateTiles = Object.keys(templates).reduce((compiler, key) => 
+        Object.assign({ [key]: parseTile(templates[key])}, compiler)
+    , {})
     return {
-        grid: json['grid'].map(json => parseTile(json)),
+        grid: json['grid'].map(json => parseTile(json, templateTiles)),
         width: parseInt(json['width']),
         height: parseInt(json['height']),
         uuid: json['uuid'],

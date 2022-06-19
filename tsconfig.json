@@ -4,9 +4,5 @@
         "module": "commonjs",
         "sourceMap": true,
         "outDir": "dist/",
-        "baseUrl": ".",
-        "paths": {
-            "@app/*": ["src/*"]
-        }
     }    
 }

@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "ts-node index.ts",
-    "build": "node_modules/typescript/bin/tsc index.ts"
+    "serve": "ts-node index.ts",
+    "build": "node_modules/typescript/bin/tsc index.ts",
+    "cli": "ts-node src/cli/index.ts"
   },
   "author": "",
   "license": "MIT",

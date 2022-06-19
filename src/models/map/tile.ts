@@ -13,13 +13,21 @@ type Tile = {
     openable: boolean; // doors
 }
 
-function parseTile(json: object): Tile {
-    return {
-        elevation: parseInt(json['elevation']),
-        occupant: null,
-        cover: enumValue(json['cover'], Cover),
-        type: enumValue(json['type'], WallType, null),
-        openable: !!json['openable']
+function parseTile(json: string | object, tileTemplates: { [key: string]: Tile } = {}): Tile {
+    if (typeof json === "string") {
+        if(<string>json in tileTemplates) {
+            return tileTemplates[<string>json]
+        } else {
+            throw new Error(`Unknown Template Type "${json}"`);
+        }
+    } else {
+        return {
+            elevation: parseInt(json['elevation']),
+            occupant: null,
+            cover: enumValue(json['cover'], Cover),
+            type: enumValue(json['type'], WallType, null),
+            openable: !!json['openable']
+        }
     }
 }
 
