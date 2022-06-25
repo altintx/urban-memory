@@ -16,7 +16,7 @@ type Tile = {
 function parseTile(json: string | object, tileTemplates: { [key: string]: Tile } = {}): Tile {
     if (typeof json === "string") {
         if(<string>json in tileTemplates) {
-            return tileTemplates[<string>json]
+            return Object.assign({}, tileTemplates[<string>json]);
         } else {
             throw new Error(`Unknown Template Type "${json}"`);
         }

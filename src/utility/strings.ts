@@ -20,7 +20,7 @@ class SpecifyLanguageException extends Error {
 }
 class Translatable {
     translations = {}
-    constructor(dictionary: { [lang: string ]: string}) {
+    constructor(dictionary: { [languageCode: string ]: string}) {
         if(!dictionary || Object.keys(dictionary).length === 0) {
             throw new NoTranslationsException("No translations defined");
         }

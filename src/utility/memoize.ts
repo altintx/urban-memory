@@ -1,4 +1,6 @@
+const OPTIMIZE = false;
 export function memoize(callback: Function): Function {
+    if(!OPTIMIZE) return callback;
     const params = callback.length;
     const _memo = {};
     return function() {

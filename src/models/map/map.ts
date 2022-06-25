@@ -62,5 +62,6 @@ export {
     parseMap,
     at,
     getRing,
-    OutOfBoundsError
+    OutOfBoundsError,
+    coordsForIndex
 };

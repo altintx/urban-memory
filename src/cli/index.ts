@@ -4,7 +4,7 @@ import { Class } from '../models/characters/class';
 import { Race } from '../models/characters/race';
 import { Operator } from '../models/core/operator';
 import { Difficulty, Game, Visibility } from '../models/game';
-import { Mission, TimeOfDay, Weather } from '../models/missions/mission';
+import { Mission, TimeOfDay, Weather, spawn } from '../models/missions/mission';
 import { Translatable } from '../utility/strings';
 import { randomUUID } from 'crypto';
 import { at, Map, parseMap } from '../models/map/map';
@@ -13,7 +13,9 @@ import { WeaponType } from '../models/characters/weapon';
 
 const map: Map = parseMap(require('../../resources/map/empty.json'));
 const hunter: Class = {
-    name: new Translatable({ en: "Hunter" })
+    name: new Translatable({ en: "Hunter" }),
+    ap: 2,
+    maxAp: 3
 }
 const race: Race = {
     name: new Translatable({ en: 'human' })
@@ -33,7 +35,8 @@ const lamblo: Character = {
     name: "Lamblo",
     operator: human,
     race: race,
-    traits: []
+    traits: [],
+    ap: hunter.ap
 }
 const olabom: Character = {
     alive: true,
@@ -43,7 +46,8 @@ const olabom: Character = {
     name: "Olabom",
     operator: null,
     race: race,
-    traits: []
+    traits: [],
+    ap: hunter.ap
 }
 
 const mission: Mission = {
@@ -54,10 +58,14 @@ const mission: Mission = {
     enemies: [olabom],
     map: map,
     objectives: [{
-        long: new Translatable({ en: "Defeat all the baddies"}),
+        long: new Translatable({ en: "Defeat all the baddies" }),
         short: new Translatable({ en: "Rain fire" }),
         resolver: (game) => game.activeMission.enemies.every(c => !c.alive)
-    }]
+    }],
+    spawnPoints: [
+        { x: 10, y: 0, faction: Faction.Player}, 
+        { x: 10, y: 19, faction: Faction.Enemy }
+    ]
 }
 const campaign: Campaign = {
     missions: [mission]
@@ -74,23 +82,33 @@ const game: Game = {
 }
 human.game = game;
 
+// TODO: bind characters to map
+
 game.campaign.missions.forEach(mission => {
     console.log(`Mission ${mission.name}`);
     console.log(`Background: ${mission.description}`)
     let involved = game.workingSquad.concat(mission.enemies);
     let turn = 0;
+    
+    spawn(mission, involved);
+
+    // console.log(mission.map.grid);
+
     while(game.workingSquad.some(c => c.alive) && !mission.objectives.every(o => o.resolver(game))) {
         turn++;
         involved.forEach(character => {
+            character.ap = Math.min(character.ap + (character.class.ap || 2), character.class.maxAp);
+        })
+        involved.forEach(character => {
             if(character.alive) {
-                console.log(`Turn ${turn}: ${character.name}`);
-                let action = null;
-                renderMap(map);
-                action = chooseAction(character, mission, game, involved);
-                performAction(action, game);
-                renderMap(map);
-                action = chooseAction(character, mission, game, involved);
-                performAction(action, game);
+                // TODO: choose action
+                while(character.ap > 0) {
+                    console.log(`Turn ${turn}: ${character.name}`);
+                    let action = null;
+                    renderMap(map);
+                    action = chooseAction(character, mission, game, involved);
+                    performAction(action, game, character);
+                }
             }
         })
     }
@@ -101,8 +119,7 @@ game.campaign.missions.forEach(mission => {
 })
 
 function renderMap(map: Map) {
-    return;
-    console.log("-----------------------------------------------------");
+    console.log(" --------------------");
     for(let y = 0; y < map.height; y++) {
         const line = ['|'];
         for(let x = 0; x < map.width; x++) {
@@ -113,9 +130,9 @@ function renderMap(map: Map) {
             }
         }
         line.push("|");
-        console.log(line.join(" "));
+        console.log(line.join(""));
     }
-    console.log("-----------------------------------------------------");
+    console.log(" --------------------");
 }
 function chooseAction(character: Character, mission: Mission, game: Game, involved: Character[]): any {
     const others = otherFaction(character, involved)
@@ -158,9 +175,10 @@ function otherFaction(character: Character, involved: Character[]) {
     return involved.filter(c => c.faction != character.faction);
 }
 
-function performAction(action: any, game) {
+function performAction(action: any, game: Game, character: Character) {
     if(action.type == AttackType.Targetted) {
         console.log("taking a shot");
+        character.ap--;
         const r = compute(action, game);
         if(r.length === 0) console.log("Missed");
         r.forEach((result: DamageInfliction) => applyDamage(<Character>result.target, result))

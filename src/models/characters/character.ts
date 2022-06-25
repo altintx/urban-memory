@@ -17,6 +17,7 @@ type Character = {
     name: string;
     traits: Base[];
     hp: number;
+    ap: number;
 }
 
 function parseCharacter(json: any): Character {
@@ -28,7 +29,8 @@ function parseCharacter(json: any): Character {
         alive: !!json['alive'],
         name: json['name'],
         traits: [],
-        hp: parseInt(json['hp'])
+        hp: parseInt(json['hp']),
+        ap: parseInt(json['ap']),
     }
 }
 
@@ -48,12 +50,13 @@ const CharacterType: Character = {
     operator: null,
     race: null,
     traits: [],
-    hp: 0
+    hp: 0,
+    ap: 0
 };
 
 function applyDamage(character: Character, damage: DamageInfliction) {
     const critMultiplier = damage.critical? 1.5: 1;
-    console.log(`hit! ${damage.baseDamage} HP ${damage.critical && "Crit!"}`);
+    console.log(`hit! ${damage.baseDamage} HP ${(damage.critical && "Crit!") || ""}`);
     character.hp -= damage.baseDamage * critMultiplier;
     character.alive = character.hp > 0;
     return character;

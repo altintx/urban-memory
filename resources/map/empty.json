@@ -5,7 +5,7 @@
     "tileTemplates": {
         "empty": {
             "elevation": 0,
-            "cover": "none",
+            "cover": "None",
             "openable": false
         }
     },

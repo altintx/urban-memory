@@ -14,7 +14,9 @@ const race: Race = {
     name: new Translatable({ en: "race" })
 };
 const klass: Class = {
-    name: new Translatable({ en: "soldier" })
+    name: new Translatable({ en: "soldier" }),
+    maxAp: 3,
+    ap: 2
 }
 const character: Character = {
     alive: true,
@@ -25,6 +27,7 @@ const character: Character = {
     traits: [],
     race: race,
     hp: 100,
+    ap: klass.ap
 };
 const character2: Character = {
     alive: true,
@@ -35,6 +38,7 @@ const character2: Character = {
     traits: [],
     race: race,
     hp: 10,
+    ap: klass.ap
 }
 const weapon: Weapon = {
     damage: 10,
@@ -70,6 +74,7 @@ const mission: Mission = {
     objectives: [],
     timeOfDay: TimeOfDay.DAYTIME,
     weather: Weather.CLEAR,
+    spawnPoints: []
 }
 const game: Game = {
     campaign: null,
