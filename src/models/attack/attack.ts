@@ -5,8 +5,8 @@ import { lucky, LuckyTrait } from '../characters/traits/lucky';
 import { Obstacle } from '../obstacle/obstacle';
 import { flatten } from 'array-flatten';
 import { difficultyBuff } from '../core/difficulty';
-import { at, getRing } from '../map/map';
-import { Tile } from '../map/tile';
+import { at, coordsForIndex, getRing, Map } from '../map/map';
+import { Cover, Tile } from '../map/tile';
 import { isA } from '../../utility/types';
 
 enum AttackType { Targetted, AOE }; 
@@ -37,15 +37,28 @@ function compute(attack: Attack, game: Game): DamageInfliction[] {
     if(attack.type === AttackType.Targetted) return computeTarget(attack, game);
     return computeAOE(attack, game);
 }
-const obstaclesBetween = (point1: Character, point2: Character): Obstacle[] => {
-    // todo: Implement
-    return [];
+const obstaclesBetween = (point1: Character, point2: Character, map: Map): Obstacle[] => {
+    const endpoints = map.grid.map((v, i) => [point1, point2].includes(<Character>v.occupant)? -1: i).filter(v => v > -1).map(i => coordsForIndex(map.width, map.height, i));
+    const x1 = endpoints[0][0],
+        y1 = endpoints[0][1],
+        x2 = endpoints[1][0],
+        y2 = endpoints[1][1];
+    const slope = (y2 - y1) / (x2 - x1);
+    const b = y1 - slope * x1;
+    const obstacles = [];
+    for (let x = x1; x <= x2; x++) {
+        const y = Math.round(slope * x + b);
+        const tile = at(map, x, y);
+        if(tile.cover !== Cover.None) obstacles.push(<Obstacle>tile.occupant);
+    }
+    return obstacles;
 }
-function coverBonus(attack: Attack): number {
+
+function coverBonus(attack: Attack, map: Map): number {
     const points = [attack.attacker].concat(attack.flankers);
-    const obstacles = points.map(point => obstaclesBetween(<Character>attack.target, point));
+    const obstacles = points.map(point => obstaclesBetween(<Character>attack.target, point, map));
     if(obstacles.some(o => o.length === 0)) return 0;
-    return Math.max.apply(Math, flatten(obstacles).map(o => o.coverBonus));
+    return Math.max.apply(Math, flatten(obstacles).filter(o => o).map(o => o.coverBonus));
 }
 function computeTarget(attack: Attack, game: Game): DamageInfliction[] {
     // accuracy should filter in here
@@ -57,7 +70,7 @@ function computeTarget(attack: Attack, game: Game): DamageInfliction[] {
     const targetFlanked = attack.flankers.length > 0;
 
     const attackerRoll = attack.attackRoll || (roll(20) + lucky(attack.attacker) - (attackerUnderFire? 1: 0) + (isPlayer(attack.attacker)? difficultyBuff(game): 0));
-    const defenderRoll = attack.defenseRoll || (roll(20) + lucky(target) - (targetFlanked? 1: 0) + coverBonus(attack) + (isPlayer(target)? difficultyBuff(game): 0));
+    const defenderRoll = attack.defenseRoll || (roll(20) + lucky(target) - (targetFlanked? 1: 0) + coverBonus(attack, game.activeMission.map) + (isPlayer(target)? difficultyBuff(game): 0));
     const criticalAttack = hasTrait(attack.attacker, LuckyTrait)? [18, 19, 20]: [19, 20];
     let damage = attackerRoll - defenderRoll;
     if(damage <= 0) return [];
