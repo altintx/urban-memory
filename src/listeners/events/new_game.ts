@@ -1,6 +1,6 @@
 import { Socket } from "socket.io";
 import { newGame, transferOperatorOrEnd } from "../../models/game";
-import { setGame as setOperatorGame } from "../../models/core/operator";
+import { setGame as setOperatorGame } from "../../models/characters/operator";
 import { getOperator, setGame } from "../../sessions";
 import joinedGameAnnouncement from "../announcements/joined_game";
 import notLoggedInAnnouncement from "../announcements/not_logged_in";

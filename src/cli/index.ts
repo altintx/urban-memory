@@ -2,7 +2,7 @@ import { Campaign } from '../models/campaign';
 import { applyDamage, Character, Faction } from '../models/characters/character';
 import { Class } from '../models/characters/class';
 import { Race } from '../models/characters/race';
-import { Operator } from '../models/core/operator';
+import { Operator } from '../models/characters/operator';
 import { Difficulty, Game, Visibility } from '../models/game';
 import { Mission, TimeOfDay, Weather, spawn } from '../models/missions/mission';
 import { Translatable } from '../utility/strings';
@@ -56,6 +56,7 @@ const mission: Mission = {
     weather: Weather.CLEAR,
     name: new Translatable({ en: "Operation Bayonette" }),
     enemies: [olabom],
+    obstacles: [],
     map: map,
     objectives: [{
         long: new Translatable({ en: "Defeat all the baddies" }),

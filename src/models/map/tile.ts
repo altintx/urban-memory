@@ -1,5 +1,6 @@
 import { enumValue } from "../../utility/enum";
 import { Character } from "../characters/character";
+import { parseTexture, Texture } from "../graphic/texture";
 import { Obstacle } from "../obstacle/obstacle";
 
 enum Cover { None, Half, Full };
@@ -11,6 +12,7 @@ type Tile = {
     cover: Cover;
     type?: WallType;
     openable: boolean; // doors
+    textures: Texture[];
 }
 
 function parseTile(json: string | object, tileTemplates: { [key: string]: Tile } = {}): Tile {
@@ -26,7 +28,8 @@ function parseTile(json: string | object, tileTemplates: { [key: string]: Tile }
             occupant: null,
             cover: enumValue(json['cover'], Cover),
             type: enumValue(json['type'], WallType, null),
-            openable: !!json['openable']
+            openable: !!json['openable'],
+            textures: json['textures'].map(json => parseTexture(json))
         }
     }
 }

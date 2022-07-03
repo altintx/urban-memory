@@ -4,7 +4,7 @@ import { Weapon } from '../characters/weapon';
 import { lucky, LuckyTrait } from '../characters/traits/lucky';
 import { Obstacle } from '../obstacle/obstacle';
 import { flatten } from 'array-flatten';
-import { difficultyBuff } from '../core/difficulty';
+import { difficultyBuff } from '../difficulty';
 import { at, coordsForIndex, getRing, Map } from '../map/map';
 import { Cover, Tile } from '../map/tile';
 import { isA } from '../../utility/types';
@@ -38,7 +38,13 @@ function compute(attack: Attack, game: Game): DamageInfliction[] {
     return computeAOE(attack, game);
 }
 const obstaclesBetween = (point1: Character, point2: Character, map: Map): Obstacle[] => {
-    const endpoints = map.grid.map((v, i) => [point1, point2].includes(<Character>v.occupant)? -1: i).filter(v => v > -1).map(i => coordsForIndex(map.width, map.height, i));
+    const endpoints = map
+        .grid
+        .map((v, i) => 
+            [point1, point2].includes(<Character>v.occupant)? -1: i
+        ).filter(v => v > -1)
+        .map(i => coordsForIndex(map.width, map.height, i));
+    if(endpoints.length === 0) return [];
     const x1 = endpoints[0][0],
         y1 = endpoints[0][1],
         x2 = endpoints[1][0],

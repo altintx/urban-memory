@@ -1,6 +1,6 @@
 import { getGames, setGame, endGame, getGameById } from './sessions';
 import { Game, Visibility } from './models/game';
-import { Difficulty } from './models/core/difficulty';
+import { Difficulty } from './models/difficulty';
 import { randomUUID } from 'crypto';
 
 const newGame = (): Game => ({

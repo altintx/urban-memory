@@ -1,5 +1,5 @@
 import { Socket } from "socket.io";
-import { Operator } from "./models/core/operator";
+import { Operator } from "./models/characters/operator";
 import { Game, Visibility } from "./models/game";
 
 let operatorMap: {

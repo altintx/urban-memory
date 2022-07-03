@@ -1,7 +1,7 @@
 import { enumValue } from "../../utility/enum";
 import { Translatable } from "../../utility/strings";
 import { DamageInfliction } from "../attack/attack";
-import { Operator } from "../core/operator";
+import { Operator } from "./operator";
 import {Class, parseClass} from "./class";
 import {parseRace, Race} from "./race";
 import { Base } from "./traits/base";

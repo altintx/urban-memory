@@ -1,4 +1,4 @@
-import { Operator } from "../../models/core/operator";
+import { Operator } from "../../models/characters/operator";
 import { Game } from "../../models/game";
 import { Map } from "../../models/map/map";
 

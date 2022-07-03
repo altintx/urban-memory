@@ -1,7 +1,19 @@
 import { randomUUID } from 'crypto';
-import {OutOfBoundsError, at} from './map'; 
+import {OutOfBoundsError, at, Map} from './map'; 
 
-const oneByOneMap = { grid: [{ elevation: 0, cover: null, openable: false } ], width: 1, height: 1, uuid: randomUUID() };
+const oneByOneMap: Map = {
+    grid: [
+        { 
+            elevation: 0, 
+            cover: null, 
+            openable: false,
+            textures: []
+        }
+    ],
+    width: 1,
+    height: 1,
+    uuid: randomUUID()
+};
 
 describe('OutOfBoundsError', () => {
     it("Has expected properties", () => {

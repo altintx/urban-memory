@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 import leftGameAnnouncement from '../listeners/announcements/left_game';
 import { endGame, setGame } from '../sessions';
 import { Character } from './characters/character';
-import { Operator } from './core/operator';
+import { Operator } from './characters/operator';
 import { Campaign, parseCampaign } from './campaign';
 import { Mission } from './missions/mission';
 

@@ -53,13 +53,15 @@ const map: Map = {
             cover: Cover.None,
             elevation: 0,
             openable: false,
-            occupant: character
+            occupant: character,
+            textures: []
         },
         {
             cover: Cover.None,
             elevation: 0,
             openable: false,
-            occupant: character2
+            occupant: character2,
+            textures: []
         }
     ],
     height: 1,
@@ -69,6 +71,7 @@ const map: Map = {
 const mission: Mission = {
     description: new Translatable({ en: "description" }),
     enemies: [character2],
+    obstacles: [],
     map: map,
     name: new Translatable({ en: "name" }),
     objectives: [],

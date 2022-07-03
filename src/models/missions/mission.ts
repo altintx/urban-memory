@@ -2,6 +2,7 @@ import { enumValue } from "../../utility/enum";
 import { Translatable } from "../../utility/strings";
 import { Character, Faction, parseCharacter } from "../characters/character";
 import { at, getRing, Map, parseMap } from "../map/map";
+import { Obstacle, parseObstacle } from "../obstacle/obstacle";
 import { Objective, parseObjective } from "./objective";
 import { parseSpawnPoint, SpawnPoint } from "./spawn_point";
 
@@ -13,6 +14,7 @@ type Mission = {
     map: Map;
     objectives: Objective[];
     enemies: Character[];
+    obstacles: Obstacle[];
     name: Translatable;
     description: Translatable;
     spawnPoints: SpawnPoint[];
@@ -26,6 +28,7 @@ function parseMission(json: object): Mission {
         spawnPoints: json['spawnPoints'].map(json => parseSpawnPoint(json)),
         objectives: json['objectives'].map(json => parseObjective(json)),
         enemies: json['enemies'].map(json => parseCharacter(json)),
+        obstacles: json['obstacles'].map(json => parseObstacle(json)),
         name: new Translatable(json['name']),
         description: new Translatable(json['description'])
     }
