@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src = "lib/socket.io.js"></script>
+<style type="text/css">
+</style>  
+</head>
+<body>
+<script>
+var socket = io();
+socket.emit('login', { name: prompt("Screen name:")});
+
+socket.on('you_logged_in', function (response){
+    socket.emit('new_game');
+    socket.on('you_joined_game', function(response) {
+        const gameId = response.gameId; 
+        socket.emit('load_map', { map: 'empty'});
+    });
+});
+</script>
+  <div id='playfield'></div>
+</body>
+</html>

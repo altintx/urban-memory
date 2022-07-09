@@ -1,9 +1,15 @@
 {
     "theme": "city",
-    "time": "daytime",
+    "timeOfDay": "daytime",
     "weather": "rain",
+    "name": {
+        "en": "The Shed"
+    },
+    "description": {
+        "en": "Mind the broom"
+    },
     "maxCharacters": 1,
-    "map": "backyard.json",
+    "map": "empty.json",
     "waves": 1,
     "spawnPoints": [
         {
@@ -44,14 +50,28 @@
             "race": "human"
         }
     ],
+    "obstacles": [],
     "objectives": [
         {
             "type": "find_hostage",
-            "wave": 0
+            "wave": 0,
+            "short": {
+                "en": "Hostage Rescue"
+            },
+            "long": {
+                "en": "Get back our very important VIPs"
+            }
         },
         {
             "type": "everyone_survives",
-            "wave": 0
+            "wave": 0,
+            "short": {
+                "en": "Everyone survives."
+            },
+            "long": {
+                "en": "That means everybody."
+            }
         }
-    ]
+    ],
+    "enemies": []
 }

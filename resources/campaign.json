@@ -7,10 +7,7 @@
             },
             "description": {
                 "en": "Recover the co-op director from the coop."
-            }
-        },
-        {
-            "mission": "boss_fight"
+            }        
         }
     ],
     "name": {
@@ -18,7 +15,5 @@
     },
     "description": {
         "en": "This might be the 'Story Mode'"
-    },
-    "timeOfDay": "DAYTIME",
-    "weather": "RAINING"
+    }
 }

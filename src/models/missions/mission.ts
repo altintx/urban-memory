@@ -21,10 +21,11 @@ type Mission = {
 };
 
 function parseMission(json: object): Mission {
+    const map = require(`../../../resources/map/${json['map']}`)
     const mission = {
         timeOfDay: enumValue(json['timeOfDay'], TimeOfDay), 
         weather: enumValue(json['weather'], Weather),
-        map: parseMap(json['map']),
+        map: parseMap(map),
         spawnPoints: json['spawnPoints'].map(json => parseSpawnPoint(json)),
         objectives: json['objectives'].map(json => parseObjective(json)),
         enemies: json['enemies'].map(json => parseCharacter(json)),

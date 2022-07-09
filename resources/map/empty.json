@@ -6,7 +6,8 @@
         "empty": {
             "elevation": 0,
             "cover": "None",
-            "openable": false
+            "openable": false,
+            "textures": []
         }
     },
     "grid": [

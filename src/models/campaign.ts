@@ -5,7 +5,10 @@ type Campaign = {
 }
 const parseCampaign = (json: object): Campaign => {
     const campaign: Campaign = {
-        missions: json['missions'].map(json => parseMission(json.missions))
+        missions: json['missions'].map(json => {
+            const mission = require(`../../resources/mission/${json.mission}`);
+            return parseMission(mission);
+        })
     }
     return campaign;
 }
