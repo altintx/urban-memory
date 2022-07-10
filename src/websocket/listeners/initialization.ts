@@ -4,11 +4,16 @@ import { listGamesMessage } from "./events/list_games";
 import { loadMapMessage } from "./events/load_map";
 import { loginMessage } from "./events/login";
 import { newGameMessage } from "./events/new_game";
+import { startNextMission } from "./events/start_next_mission";
 
 function listen(socket: Socket) {
     function wrap(cb: (socket: Socket,message: any) => void) {
         return (json: any) => {
-            cb(socket, json);
+            try {
+               cb(socket, json);
+            } catch (e) {
+                console.error("Uncaught error", e);
+            }
         }
     }
     socket.on('new_game', wrap(newGameMessage));
@@ -16,6 +21,7 @@ function listen(socket: Socket) {
     socket.on('join_game', wrap(joinGameMessage));
     socket.on('list_games', wrap(listGamesMessage));
     socket.on('load_map', wrap(loadMapMessage));
+    socket.on('start_next_mission', wrap(startNextMission));
 }
 
 export {

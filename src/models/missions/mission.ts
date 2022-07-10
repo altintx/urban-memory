@@ -18,6 +18,7 @@ type Mission = {
     name: Translatable;
     description: Translatable;
     spawnPoints: SpawnPoint[];
+    uuid: string;
 };
 
 function parseMission(json: object): Mission {
@@ -31,7 +32,8 @@ function parseMission(json: object): Mission {
         enemies: json['enemies'].map(json => parseCharacter(json)),
         obstacles: json['obstacles'].map(json => parseObstacle(json)),
         name: new Translatable(json['name']),
-        description: new Translatable(json['description'])
+        description: new Translatable(json['description']),
+        uuid: json['uuid']
     }
     return mission;
 }

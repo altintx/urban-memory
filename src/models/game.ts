@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import leftGameAnnouncement from '../websocket/listeners/announcements/left_game';
 import { endGame, setGame } from '../sessions';
-import { Character } from './characters/character';
+import { Character, serializeCharacter } from './characters/character';
 import { Operator } from './characters/operator';
 import { Campaign, parseCampaign } from './campaign';
 import { Mission } from './missions/mission';
@@ -57,6 +57,17 @@ function join(game: Game, operator: Operator): Game {
     return newGame;
 }
 
+function serializeGame(game: Game): object {
+    return {
+        missionUuid: game.activeMission?.uuid,
+        characters: game.characters.map(c => c.uuid),
+        uuid: game.gameId,
+        workingSquad: game.workingSquad.map(c => c.uuid),
+        difficulty: game.difficulty,
+        visibility: game.visibility
+    }
+}
+
 export {
     Game,
     addCharacter,
@@ -64,5 +75,6 @@ export {
     transferOperatorOrEnd,
     join,
     Visibility,
-    Difficulty
+    Difficulty,
+    serializeGame
 };

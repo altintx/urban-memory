@@ -11,11 +11,24 @@ var socket = io();
 socket.emit('login', { name: prompt("Screen name:")});
 
 socket.on('you_logged_in', function (response){
+  let gameId = null;
     socket.emit('new_game');
     socket.on('you_joined_game', function(response) {
-        const gameId = response.gameId; 
-        socket.emit('load_map', { map: 'empty'});
+      gameId = response.gameId, mission = response.missionUuid;
     });
+    socket.on('game_state', function(response) {
+      const mission = response.mission;
+      if(mission) {
+        socket.emit('mission_info');
+      } else {
+        if(confirm("Start mission?")) {
+          socket.emit("start_next_mission", 0);
+        }
+      }
+    })
+    socket.on('mission_info', function(response) {
+      console.log(response);
+    })
 });
 </script>
   <div id='playfield'></div>
