@@ -4,6 +4,7 @@ import { setGame as setOperatorGame } from "../../../models/characters/operator"
 import { getOperator, setGame } from "../../../sessions";
 import joinedGameAnnouncement from "../announcements/joined_game";
 import notLoggedInAnnouncement from "../announcements/not_logged_in";
+import gameStateAnnouncement from "../announcements/game_state";
 
 export function newGameMessage(socket: Socket): boolean {
     const operator = getOperator(socket);
@@ -12,10 +13,10 @@ export function newGameMessage(socket: Socket): boolean {
         transferOperatorOrEnd(operator.game, operator);
     }
     const game = newGame();
-    console.log(`Making new game session for ${operator.name}`);
     game.operators.push(operator); 
     setGame(game)
     setOperatorGame(operator, game);
     joinedGameAnnouncement(game, operator);
+    gameStateAnnouncement(game, operator)
     return true;
 }

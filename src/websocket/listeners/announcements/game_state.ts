@@ -1,8 +1,7 @@
+import { Operator } from "../../../models/characters/operator";
 import { Game } from "../../../models/game";
 import { serializeMission } from "../../../models/missions/mission";
 
-export default function gameStateAnnouncement(game: Game) {
-    game.operators.map(operator => {
-        operator.socket.emit("game_state", serializeMission(game.activeMission));
-    });
+export default function gameStateAnnouncement(game: Game, operator: Operator) {
+    operator.socket.emit("game_state", serializeMission(game.activeMission));
 }
