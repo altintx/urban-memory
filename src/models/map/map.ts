@@ -1,4 +1,4 @@
-import { parseTile, Tile } from './tile';
+import { parseTile, serializeTile, Tile } from './tile';
 import { memoize } from '../../utility/memoize';
 type Map = {
     grid: Tile[]; // y * height + x
@@ -26,6 +26,13 @@ function parseMap(json: any): Map {
         height: parseInt(json['height']),
         uuid: json['uuid'],
     }
+}
+
+function serializeMap(map: Map): object {
+    return {
+        grid: map.grid.map(tile => serializeTile(tile)),
+        ...map
+    };
 }
 
 function at(map: Map, x: number, y: number): Tile {
@@ -60,6 +67,7 @@ function getRing(map: Map, x1: number, y1: number, spread: number): Tile[] {
 export {
     Map,
     parseMap,
+    serializeMap,
     at,
     getRing,
     OutOfBoundsError,

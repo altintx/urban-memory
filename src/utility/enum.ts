@@ -4,7 +4,7 @@
  * return that. If none of the above, return a random value from the
  * given enum.
  */
-const enumValue = (desired: any, type: any, defaultValue = undefined) => {
+ const enumValue = (desired: any, type: any, defaultValue = undefined) => {
     const possibilities = Object.values(type);
     if(possibilities.includes(desired)) return desired;
     const stringPossibilities = Object.keys(type).filter((v) => isNaN(Number(v)));

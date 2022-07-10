@@ -15,7 +15,13 @@ function parseSpawnPoint (json: object): SpawnPoint {
         character_uuid: json['character_uuid']
     };
 }
+function serializeSpawnPoint(sp: SpawnPoint): object {
+    return {
+        ...sp
+    }
+}
 export {
     SpawnPoint,
-    parseSpawnPoint
+    parseSpawnPoint,
+    serializeSpawnPoint
 };

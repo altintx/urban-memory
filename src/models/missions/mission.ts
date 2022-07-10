@@ -1,10 +1,10 @@
 import { enumValue } from "../../utility/enum";
 import { Translatable } from "../../utility/strings";
-import { Character, Faction, parseCharacter } from "../characters/character";
-import { at, getRing, Map, parseMap } from "../map/map";
-import { Obstacle, parseObstacle } from "../obstacle/obstacle";
-import { Objective, parseObjective } from "./objective";
-import { parseSpawnPoint, SpawnPoint } from "./spawn_point";
+import { Character, Faction, parseCharacter, serializeCharacter } from "../characters/character";
+import { at, getRing, Map, parseMap, serializeMap } from "../map/map";
+import { Obstacle, parseObstacle, serializeObstacle } from "../obstacle/obstacle";
+import { Objective, parseObjective, serializeObjective } from "./objective";
+import { parseSpawnPoint, serializeSpawnPoint, SpawnPoint } from "./spawn_point";
 
 enum TimeOfDay { NIGHT, SUNRISE, DAYTIME, SUNSET }
 enum Weather { CLEAR, FOGGY, RAINING, WINDY}
@@ -35,6 +35,22 @@ function parseMission(json: object): Mission {
     }
     return mission;
 }
+
+
+function serializeMission(mission: Mission): object {
+    return {
+        map: serializeMap(mission.map),
+        spawnPoints: mission.spawnPoints.map(sp => serializeSpawnPoint(sp)),
+        objectives: mission.objectives.map(o => serializeObjective(o)),
+        enemies: mission.enemies.map(enemy => serializeCharacter(enemy)),
+        obstacles: mission.obstacles.map(obstacle => serializeObstacle(obstacle)),
+        name: mission.name.translations,
+        description: mission.description.translations,
+        ...mission
+    }
+}
+
+
 
 function spawn(mission: Mission, involved: Character[]): Mission {
     const heroes = involved.filter(c => c.faction === Faction.Player),
@@ -69,5 +85,6 @@ export {
     Weather,
     TimeOfDay,
     parseMission,
+    serializeMission,
     spawn
 };

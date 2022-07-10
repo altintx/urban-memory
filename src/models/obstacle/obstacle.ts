@@ -2,6 +2,7 @@ import { Translatable } from "../../utility/strings";
 
 type Obstacle = {
     name: Translatable;
+    uuid: string;
     destructive: boolean;
     destructable: boolean;
     visible: boolean;
@@ -14,6 +15,7 @@ type Obstacle = {
 function parseObstacle(json: object): Obstacle {
     return {
         name: new Translatable(json['name']),
+        uuid: json['uuid'],
         destructable: !!json['destructable'],
         destructive: !!json['destructive'],
         visible: !!json['visible'],
@@ -23,8 +25,15 @@ function parseObstacle(json: object): Obstacle {
         height: parseInt(json['height'])
     }
 }
+function serializeObstacle(obstacle: Obstacle): object {
+    return {
+        name: obstacle.name.translations,
+        ...obstacle
+    }
+}
 
 export {
     Obstacle,
-    parseObstacle
+    parseObstacle,
+    serializeObstacle
 };

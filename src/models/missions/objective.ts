@@ -12,7 +12,15 @@ function parseObjective(json: any): Objective {
         resolver: eval(json['resolver'] || '(game) => false')
     }
 }
+function serializeObjective(o: Objective): object {
+    return {
+        short: o.short.translations,
+        long: o.long.translations
+        // resolver should only live on server
+    }
+}
 export {
     Objective,
-    parseObjective
+    parseObjective,
+    serializeObjective
 };

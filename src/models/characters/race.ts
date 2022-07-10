@@ -9,7 +9,14 @@ function parseRace(json: object): Race {
     }
 }
 
+function serializeRace(r: Race): object {
+    return {
+        name: r.name.translations
+    }
+}
+
 export {
     Race,
-    parseRace
+    parseRace,
+    serializeRace
 };

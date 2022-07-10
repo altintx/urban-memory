@@ -34,9 +34,21 @@ function parseTile(json: string | object, tileTemplates: { [key: string]: Tile }
     }
 }
 
+function serializeTile(tile: Tile): object {
+    return {
+        "cover": tile.cover,
+        "elevation": tile.elevation,
+        "occupant": tile.occupant.uuid,
+        "openable": tile.openable,
+        "textures": tile.textures,
+        "type": tile.type
+    }
+}
+
 export {
     Tile,
     Cover,
     WallType,
-    parseTile
+    parseTile,
+    serializeTile
 };

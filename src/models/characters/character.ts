@@ -2,13 +2,15 @@ import { enumValue } from "../../utility/enum";
 import { Translatable } from "../../utility/strings";
 import { DamageInfliction } from "../attack/attack";
 import { Operator } from "./operator";
-import {Class, parseClass} from "./class";
-import {parseRace, Race} from "./race";
+import {Class, parseClass, serializeClass} from "./class";
+import {parseRace, Race, serializeRace} from "./race";
 import { Base } from "./traits/base";
+import { randomUUID } from "crypto";
 
 enum Faction { Player, Enemy }
 
 type Character = {
+    uuid: string;
     operator: Operator;
     class: Class;
     race: Race;
@@ -31,6 +33,16 @@ function parseCharacter(json: any): Character {
         traits: [],
         hp: parseInt(json['hp']),
         ap: parseInt(json['ap']),
+        uuid: json['uuid']
+    }
+}
+
+function serializeCharacter(character: Character): object {
+    return {
+        operator: character.operator.operatorId,
+        class: serializeClass(character.class),
+        race: serializeRace(character.race),
+        ...character
     }
 }
 
@@ -51,7 +63,8 @@ const CharacterType: Character = {
     race: null,
     traits: [],
     hp: 0,
-    ap: 0
+    ap: 0,
+    uuid: randomUUID()
 };
 
 function applyDamage(character: Character, damage: DamageInfliction) {
@@ -69,5 +82,6 @@ export {
     hasTrait,
     isPlayer,
     applyDamage,
+    serializeCharacter,
     CharacterType
 };

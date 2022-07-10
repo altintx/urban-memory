@@ -12,7 +12,14 @@ function parseClass(json: object): Class {
         maxAp: parseInt(json['maxAp'])
     }
 }
+function serializeClass(k: Class): object {
+    return {
+        name: k.name.translations,
+        ...k
+    }
+}
 export {
     Class,
-    parseClass
+    parseClass,
+    serializeClass
 };
