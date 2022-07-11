@@ -27,7 +27,8 @@ const character: Character = {
     traits: [],
     race: race,
     hp: 100,
-    ap: klass.ap
+    ap: klass.ap,
+    uuid: randomUUID()
 };
 const character2: Character = {
     alive: true,
@@ -38,7 +39,8 @@ const character2: Character = {
     traits: [],
     race: race,
     hp: 10,
-    ap: klass.ap
+    ap: klass.ap,
+    uuid: randomUUID()
 }
 const weapon: Weapon = {
     damage: 10,
@@ -77,7 +79,8 @@ const mission: Mission = {
     objectives: [],
     timeOfDay: TimeOfDay.DAYTIME,
     weather: Weather.CLEAR,
-    spawnPoints: []
+    spawnPoints: [],
+    uuid: randomUUID()
 }
 const game: Game = {
     campaign: null,
