@@ -36,7 +36,8 @@ const lamblo: Character = {
     operator: human,
     race: race,
     traits: [],
-    ap: hunter.ap
+    ap: hunter.ap,
+    uuid: randomUUID()
 }
 const olabom: Character = {
     alive: true,
@@ -47,7 +48,8 @@ const olabom: Character = {
     operator: null,
     race: race,
     traits: [],
-    ap: hunter.ap
+    ap: hunter.ap,
+    uuid: randomUUID()
 }
 
 const mission: Mission = {
@@ -66,7 +68,8 @@ const mission: Mission = {
     spawnPoints: [
         { x: 10, y: 0, faction: Faction.Player}, 
         { x: 10, y: 19, faction: Faction.Enemy }
-    ]
+    ],
+    uuid: randomUUID()
 }
 const campaign: Campaign = {
     missions: [mission]
