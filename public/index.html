@@ -1,36 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script src = "lib/socket.io.js"></script>
-<style type="text/css">
-</style>  
-</head>
 <body>
-<script>
-var socket = io();
-socket.emit('login', { name: prompt("Screen name:")});
-
-socket.on('you_logged_in', function (response){
-  let gameId = null;
-    socket.emit('new_game');
-    socket.on('you_joined_game', function(response) {
-      gameId = response.gameId, mission = response.missionUuid;
-    });
-    socket.on('game_state', function(response) {
-      const mission = response.mission;
-      if(mission) {
-        socket.emit('mission_info');
-      } else {
-        if(confirm("Start mission?")) {
-          socket.emit("start_next_mission", 0);
-        }
-      }
-    })
-    socket.on('mission_info', function(response) {
-      console.log(response);
-    })
-});
-</script>
-  <div id='playfield'></div>
+Web Server is running, connect <a href="https://www.github.com/altintx/glowing-fiesta"><code>glowing-fiesta</code></a> to it to play.
 </body>
 </html>
