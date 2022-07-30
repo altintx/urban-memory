@@ -1,10 +1,14 @@
 import { randomUUID } from 'crypto';
 import leftGameAnnouncement from '../websocket/listeners/announcements/left_game';
 import { endGame, setGame } from '../sessions';
-import { Character, serializeCharacter } from './characters/character';
+import { Character, Faction, parseCharacter, serializeCharacter } from './characters/character';
 import { Operator } from './characters/operator';
 import { Campaign, parseCampaign } from './campaign';
 import { Mission } from './missions/mission';
+import { parseRace, Race } from './characters/race';
+import { randomName } from './name';
+import { randomValue } from '../utility/array';
+import { Class, parseClass } from './characters/class';
 
 enum Visibility { Public, Private };
 enum Difficulty {
@@ -27,11 +31,45 @@ function addCharacter(character: Character, game: Game): Game {
 }
 
 function newGame(): Game {
+    const characterFactory = (name: string, className: Class, race: Race, faction: Faction): Character => {
+        const character = parseCharacter({
+            name: name,
+            uuid: randomUUID(),
+            operator: null, 
+            class: className,
+            race: race,
+            faction: faction,
+            alive: true,
+            traits: [],
+            hp: 100,
+            ap: 1,
+ 
+        });
+        return character;
+    }
+    const HUMAN = parseRace({ name: { en: "Human" } })
+    const characters = [];
+    const genders = ['male', 'female'];
+    const classes = ['hunter'].map(name => parseClass({
+        name: { en: name },
+        ap: 2,
+        maxAp: 6
+    }));
+    for(let i = 0; i < 20; i++) {
+        characters.push(
+            characterFactory(
+                randomName(randomValue(genders)),
+                randomValue(classes),
+                HUMAN,
+                Faction.Player
+            )
+        );
+    }
     return {
-        characters: [],
+        characters: characters,
         campaign: parseCampaign(require('../../resources/campaign.json')),
         difficulty: Difficulty.Easy,
-        workingSquad: [],
+        workingSquad: characters.slice(0,4),
         gameId: randomUUID(),
         operators: [],
         visibility: Visibility.Public
