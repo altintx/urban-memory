@@ -13,24 +13,21 @@
     "waves": 1,
     "spawnPoints": [
         {
-            "type": "operator",
-            "faction": "player",
+            "faction": "Player",
             "wave": 0,
             "index": 0,
             "x": 0,
             "y": 1
         },
         {
-            "type": "operator",
-            "faction": "player",
+            "faction": "Player",
             "wave": 0,
             "index": 1,
             "x": 0,
             "y": 3
         },
         {
-            "type": "enemy",
-            "faction": "enemy",
+            "faction": "Enemy",
             "uuid": "04feea48-c815-4cec-8d26-6d56218495da",
             "wave": 0,
             "x": 6,

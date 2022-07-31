@@ -5,7 +5,7 @@
  * given enum.
  */
  const enumValue = (desired: any, type: any, defaultValue = undefined) => {
-    const possibilities = Object.values(type);
+    const possibilities = Object.values(type).filter((v) => !isNaN(Number(v)));
     if(possibilities.includes(desired)) return desired;
     const stringPossibilities = Object.keys(type).filter((v) => isNaN(Number(v)));
     if(stringPossibilities.includes(desired)) return type[desired];
