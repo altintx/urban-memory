@@ -1,4 +1,5 @@
 import { Socket } from "socket.io";
+import { helloMessage } from "./events/hello";
 import { joinGameMessage } from "./events/join_game";
 import { listGamesMessage } from "./events/list_games";
 import { loadMapMessage } from "./events/load_map";
@@ -22,6 +23,7 @@ function listen(socket: Socket) {
     socket.on('list_games', wrap(listGamesMessage));
     socket.on('load_map', wrap(loadMapMessage));
     socket.on('start_next_mission', wrap(startNextMission));
+    socket.on('hello', wrap(helloMessage));
 }
 
 export {
