@@ -8,11 +8,15 @@ type SpawnPoint = {
     character_uuid?: string;
 }
 function parseSpawnPoint (json: object): SpawnPoint {
+    const faction = enumValue(json['faction'], Faction);
+    const x = parseInt(json['x']);
+    const y = parseInt(json['y']);
+    const character_uuid = json['character_uuid'];
     return {
-        x: parseInt(json['x']),
-        y: parseInt(json['y']),
-        faction: enumValue(json['faction'], Faction),
-        character_uuid: json['character_uuid']
+        x,
+        y,
+        faction,
+        character_uuid
     };
 }
 function serializeSpawnPoint(sp: SpawnPoint): object {
