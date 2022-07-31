@@ -57,7 +57,8 @@
             },
             "race": {
                 "name": { "en": "human" }
-            }
+            },
+            "name": "Max"
         },
         {
             "uuid": "be7a9651-66b9-4d1b-931b-d177dfbd1170",
@@ -68,7 +69,8 @@
             },
             "race": {
                 "name": { "en": "human" }
-            }
+            },
+            "name": "Kofi"
         }
     ]
 }
