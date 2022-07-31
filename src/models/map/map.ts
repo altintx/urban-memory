@@ -30,8 +30,8 @@ function parseMap(json: any): Map {
 
 function serializeMap(map: Map): object {
     return {
+        ...map,
         grid: map.grid.map(tile => serializeTile(tile)),
-        ...map
     };
 }
 

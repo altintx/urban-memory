@@ -5,10 +5,10 @@ import { Character, Faction, parseCharacter, serializeCharacter } from './charac
 import { Operator } from './characters/operator';
 import { Campaign, parseCampaign } from './campaign';
 import { Mission } from './missions/mission';
-import { parseRace, Race } from './characters/race';
+import { parseRace, Race, serializeRace } from './characters/race';
 import { randomName } from './name';
 import { randomValue } from '../utility/array';
-import { Class, parseClass } from './characters/class';
+import { Class, parseClass, serializeClass } from './characters/class';
 
 enum Visibility { Public, Private };
 enum Difficulty {
@@ -32,12 +32,13 @@ function addCharacter(character: Character, game: Game): Game {
 
 function newGame(): Game {
     const characterFactory = (name: string, className: Class, race: Race, faction: Faction): Character => {
+        const classJson = serializeClass(className), raceJson = serializeRace(race);
         const character = parseCharacter({
             name: name,
             uuid: randomUUID(),
             operator: null, 
-            class: className,
-            race: race,
+            class: classJson,
+            race: raceJson,
             faction: faction,
             alive: true,
             traits: [],
@@ -55,7 +56,7 @@ function newGame(): Game {
         ap: 2,
         maxAp: 6
     }));
-    for(let i = 0; i < 20; i++) {
+    for(let i = 0; i < 1; i++) {
         characters.push(
             characterFactory(
                 randomName(randomValue(genders)),

@@ -41,6 +41,7 @@ function parseMission(json: object): Mission {
 
 function serializeMission(mission: Mission): object {
     return {
+        ...mission,
         map: serializeMap(mission.map),
         spawnPoints: mission.spawnPoints.map(sp => serializeSpawnPoint(sp)),
         objectives: mission.objectives.map(o => serializeObjective(o)),
@@ -48,7 +49,6 @@ function serializeMission(mission: Mission): object {
         obstacles: mission.obstacles.map(obstacle => serializeObstacle(obstacle)),
         name: mission.name.translations,
         description: mission.description.translations,
-        ...mission
     }
 }
 

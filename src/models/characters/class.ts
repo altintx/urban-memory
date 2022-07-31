@@ -14,8 +14,8 @@ function parseClass(json: object): Class {
 }
 function serializeClass(k: Class): object {
     return {
-        name: k.name.translations,
-        ...k
+        ...k,
+        name: k.name.translations
     }
 }
 export {

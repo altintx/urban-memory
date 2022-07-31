@@ -34,19 +34,6 @@
             "y": 4
         }
     ],
-    "characters": [
-        {
-            "uuid": "04feea48-c815-4cec-8d26-6d56218495da",
-            "class": "sniper",
-            "race": "human"
-
-        },
-        {
-            "uuid": "be7a9651-66b9-4d1b-931b-d177dfbd1170",
-            "class": "civilian",
-            "race": "human"
-        }
-    ],
     "obstacles": [],
     "objectives": [
         {
@@ -60,5 +47,28 @@
             }
         }
     ],
-    "enemies": []
+    "enemies": [
+        {
+            "uuid": "04feea48-c815-4cec-8d26-6d56218495da",
+            "class": {
+                "name": { "en": "sniper" },
+                "ap": 2,
+                "maxAp": 2
+            },
+            "race": {
+                "name": { "en": "human" }
+            }
+        },
+        {
+            "uuid": "be7a9651-66b9-4d1b-931b-d177dfbd1170",
+            "class": {
+                "name": { "en": "civilian" },
+                "ap": 2,
+                "maxAp": 2
+            },
+            "race": {
+                "name": { "en": "human" }
+            }
+        }
+    ]
 }

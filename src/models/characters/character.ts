@@ -39,10 +39,10 @@ function parseCharacter(json: any): Character {
 
 function serializeCharacter(character: Character): object {
     return {
-        operator: character.operator.operatorId,
+        ...character,
+        operator: character.operator?.operatorId,
         class: serializeClass(character.class),
         race: serializeRace(character.race),
-        ...character
     }
 }
 
@@ -69,7 +69,7 @@ const CharacterType: Character = {
 
 function applyDamage(character: Character, damage: DamageInfliction) {
     const critMultiplier = damage.critical? 1.5: 1;
-    console.log(`hit! ${damage.baseDamage} HP ${(damage.critical && "Crit!") || ""}`);
+    // console.log(`hit! ${damage.baseDamage} HP ${(damage.critical && "Crit!") || ""}`);
     character.hp -= damage.baseDamage * critMultiplier;
     character.alive = character.hp > 0;
     return character;
