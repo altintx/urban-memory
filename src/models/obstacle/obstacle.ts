@@ -1,4 +1,5 @@
 import { Translatable } from "../../utility/strings";
+import { parseTexture, Texture } from "../graphic/texture";
 
 type Obstacle = {
     name: Translatable;
@@ -10,6 +11,7 @@ type Obstacle = {
     destroyed: boolean;
     width: number;
     height: number;
+    textures: Texture[];
 }
 
 function parseObstacle(json: object): Obstacle {
@@ -22,13 +24,15 @@ function parseObstacle(json: object): Obstacle {
         destroyed: !!json['destroyed'],
         coverBonus: Infinity,
         width: parseInt(json['width']),
-        height: parseInt(json['height'])
+        height: parseInt(json['height']),
+        textures: json['textures'].map(json => parseTexture(json))
     }
 }
 function serializeObstacle(obstacle: Obstacle): object {
     return {
+        ...obstacle,
+        textures: obstacle.textures,
         name: obstacle.name.translations,
-        ...obstacle
     }
 }
 

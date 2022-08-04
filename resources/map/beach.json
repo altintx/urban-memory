@@ -49,7 +49,22 @@
         "water",
         "water",
         "water",
-        "water",
+        {
+            "template": "water",
+            "obstacle": {
+                "name": {
+                    "en": "Boulder"
+                },
+                "destructable": false,
+                "destructive": false,
+                "visible": true,
+                "destroyed": false,
+                "coverBonus": 1,
+                "width": 1,
+                "height": 1,
+                "textures": [{ "graphic": "rock", "animation": [], "offset": [0, 0, 0]}]
+            }
+        },
         "water",
         "water",
         "water",
