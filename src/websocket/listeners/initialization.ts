@@ -6,6 +6,7 @@ import { loadMapMessage } from "./events/load_map";
 import { loginMessage } from "./events/login";
 import { newGameMessage } from "./events/new_game";
 import { startNextMission } from "./events/start_next_mission";
+import { tileInteraction } from "./events/tile_interaction";
 
 function listen(socket: Socket) {
     function wrap(cb: (socket: Socket,message: any) => void) {
@@ -24,6 +25,7 @@ function listen(socket: Socket) {
     socket.on('load_map', wrap(loadMapMessage));
     socket.on('start_next_mission', wrap(startNextMission));
     socket.on('hello', wrap(helloMessage));
+    socket.on('tile_interaction', wrap(tileInteraction));
 }
 
 export {
