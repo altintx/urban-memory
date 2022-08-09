@@ -52,6 +52,11 @@ const coordsForIndex = memoize(function _coordinatesForIndex(width: number, heig
     return [x, y]; 
 });
 
+function coordinatesForTile(map: Map, tile: Tile): [number, number] {
+    const ix = map.grid.indexOf(tile);
+    return coordsForIndex(map.width, map.height, ix);
+}
+
 function getRing(map: Map, x1: number, y1: number, spread: number): Tile[] {
     return map.grid.reduce((tiles, tile, index) => {
         const [x2, y2] = coordsForIndex(map.width, map.height, index);
@@ -71,5 +76,6 @@ export {
     at,
     getRing,
     OutOfBoundsError,
-    coordsForIndex
+    coordsForIndex,
+    coordinatesForTile,
 };
