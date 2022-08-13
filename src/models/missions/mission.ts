@@ -74,7 +74,6 @@ function spawn(mission: Mission, involved: Character[]): Mission {
                 if(character) {
                     tile.occupant = character;
                     placed = true;
-                    console.log(`placing ${character.name}`);           
                 }
             }
         }

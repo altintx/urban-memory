@@ -13,12 +13,11 @@ const io = new Server(server, {
 });
 
 io.on('connection', (socket) => {
-    console.log("starting dispatcher");
     listen(socket);
 });
 
 io.on('disconnect', (socket) => {
-    console.log("ending game");
+    console.log("todo: end or disconnect or whatever. transferOperatorOrEnd???");
 });
 
 app.use(express.static('public'))

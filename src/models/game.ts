@@ -78,7 +78,6 @@ function newGame(): Game {
 }
 
 function transferOperatorOrEnd(game:Game, departingOperator: Operator): Game | null {
-    console.log(game);
     if(game.operators.length > 1) {
         const newGame = Object.assign({}, game, { operators: game.operators.filter(o => o !== departingOperator) });
         setGame(newGame);

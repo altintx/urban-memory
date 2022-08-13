@@ -7,6 +7,7 @@ import notLoggedInAnnouncement from "../announcements/not_logged_in";
 import gameStateAnnouncement from "../announcements/game_state";
 
 export function newGameMessage(socket: Socket): boolean {
+    console.log('newGameMessage');
     const operator = getOperator(socket);
     if(!operator) return notLoggedInAnnouncement(socket);
     if(operator.game) {

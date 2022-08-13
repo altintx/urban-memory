@@ -28,7 +28,6 @@ function newOperator(socket: Socket, name: string): Operator {
 function setGame(operator: Operator, game: Game): Operator {
     setSessionGame(game);
     operator.game = game;
-    console.log("Updated active game");
     return operator;
 }
 

@@ -34,6 +34,7 @@ function actionsFor(tile: Tile, mode: number) {
 }
 
 export default function actionsForTileAnnouncement(operator: Operator, tile: Tile, mode: number, sig: string) {
+    console.log('actionsForTileAnnouncement');
     operator.socket.emit("actions_for_tile", {
         tile: serializeTile(tile),
         mode: mode,

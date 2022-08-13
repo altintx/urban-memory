@@ -29,7 +29,6 @@ function parseTile(json: string | object, tileTemplates: { [key: string]: Tile }
         const properties = ['elevation', 'cover', 'openable', 'textures'];
         const occupant = (json) => {
             if(json) {
-                console.log(json)
                 return parseObstacle(json);
             }
             return null;
