@@ -8,6 +8,7 @@ const MOVE: Action = {
     }),
     ap: 1,
     xp: 0,
+    uuid: "a1e8f8f0-f8f0-11e9-b210-d663bd873d93",
     cooldown: 0,
     available(source, destination, action, mission): boolean {
         if(!destination) return false;
@@ -30,6 +31,7 @@ const MOVE: Action = {
 
 const DASH: Action = {
     ...MOVE,
+    uuid: "b1e8f8f0-f8f0-11e9-b210-d663bd873d93",
     name: new Translatable({
         en: "Dash"
     }),

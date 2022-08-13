@@ -12,6 +12,7 @@ export type Action = {
     ap: number;
     cooldown: Cooldown;
     xp: number;
+    uuid: string;
     available: (source: Tile, destination: Tile, action: Action, mission: Mission) => boolean;
 }
 
@@ -21,5 +22,6 @@ export function serializeAction(action: Action): object {
         ap: action.ap,
         cooldown: action.cooldown,
         xp: action.xp,
+        uuid: action.uuid,
     }
 }

@@ -26,6 +26,7 @@ const ATTACK_PRIMARY: Action = {
     ap: 1,
     xp: 10,
     cooldown: 0,
+    uuid: "e1e8f8f0-f8f0-11e9-b210-d663bd873d93",
     available(source, destination, action, mission): boolean {
         return available(source, destination, action, mission, {} as Weapon);
     },
@@ -37,6 +38,7 @@ const ATTACK_SECONDARY: Action = {
         en: "Attack (secondary)"
     }),
     cooldown: 0,
+    uuid: "f1e8f8f0-f8f0-11e9-b210-d663bd873d93",
     ap: 1
 }
 
