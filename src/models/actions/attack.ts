@@ -30,6 +30,7 @@ const ATTACK_PRIMARY: Action = {
     available(source, destination, action, mission): boolean {
         return available(source, destination, action, mission, {} as Weapon);
     },
+    hasSecondarySelection: true
 }
 
 const ATTACK_SECONDARY: Action = {

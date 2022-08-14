@@ -10,6 +10,7 @@ const MOVE: Action = {
     xp: 0,
     uuid: "a1e8f8f0-f8f0-11e9-b210-d663bd873d93",
     cooldown: 0,
+    hasSecondarySelection: true,
     available(source, destination, action, mission): boolean {
         if(!destination) return false;
         if(!source) return false;

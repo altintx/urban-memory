@@ -2,6 +2,8 @@ import { Translatable } from "../utility/strings"
 import { Tile } from "./map/tile";
 import { Mission } from "./missions/mission";
 
+export enum InteractionMode { Hovering, Select, }
+
 export enum Cooldown {
     None,
     Short,
@@ -14,6 +16,7 @@ export type Action = {
     xp: number;
     uuid: string;
     available: (source: Tile, destination: Tile, action: Action, mission: Mission) => boolean;
+    hasSecondarySelection: boolean;
 }
 
 export function serializeAction(action: Action): object {
@@ -23,5 +26,6 @@ export function serializeAction(action: Action): object {
         cooldown: action.cooldown,
         xp: action.xp,
         uuid: action.uuid,
+        hasSecondarySelection: action.hasSecondarySelection
     }
 }

@@ -1,32 +1,22 @@
 import { Socket } from "socket.io";
-import { serializeAction } from "../../../models/action";
-import { ATTACK_PRIMARY, ATTACK_SECONDARY, MOVE } from "../../../models/actions";
-import { SELECT_ATTENTION, SELECT_SELECT } from "../../../models/actions/select";
+import { InteractionMode, serializeAction } from "../../../models/action";
+import actions, { NAMED_ACTIONS } from "../../../models/actions";
+import { SELECT_ATTENTION } from "../../../models/actions/select";
 import { Operator } from "../../../models/characters/operator";
 import { serializeTile, Tile } from "../../../models/map/tile";
 
-enum InteractionMode { Hovering, Selecting }
-function actionsForHovering(tile: Tile) {
-    return [
-        SELECT_SELECT,
-        // SELECT_ATTENTION
-    ];
-}
-
 function actionsForSelecting(tile: Tile) {
     return [
-        SELECT_ATTENTION,
-        ATTACK_PRIMARY,
-        ATTACK_SECONDARY,
-        MOVE
-    ];
+        NAMED_ACTIONS.SELECT_ATTENTION,
+        NAMED_ACTIONS.ATTACK_PRIMARY,
+        NAMED_ACTIONS.ATTACK_SECONDARY,
+        NAMED_ACTIONS.MOVE
+    ].map(i => actions[i])
 }
 
 function actionsFor(tile: Tile, mode: number) {
     switch(mode) {
-        case InteractionMode.Hovering:
-            return actionsForHovering(tile);
-        case InteractionMode.Selecting:
+        case InteractionMode.Select:
             return actionsForSelecting(tile);
         default: 
             return [];
