@@ -19,7 +19,7 @@ const MOVE: Action = {
         
         if(destination.occupant) return false;
         const maxMovement = 5;
-        const distance = Math.ceil(Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
+        const distance = Math.floor(Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
         if(distance <= maxMovement) return true;
         return false;
         // todo
