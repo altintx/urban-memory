@@ -1,5 +1,8 @@
 import { Translatable } from "../../utility/strings";
+import { isA } from "../../utility/types";
 import { Action } from "../action";
+import { Character, CharacterType } from "../characters/character";
+import { Game } from "../game";
 import { coordinatesForTile } from "../map/map";
 
 const MOVE: Action = {
@@ -28,6 +31,18 @@ const MOVE: Action = {
         // find character's remaining ap 
         // return path.length <= character.movement * action.ap
     },
+    execute(source, destination, action, mission, game): Game {
+        const [x1, y1] = coordinatesForTile(mission.map, source);
+        const [x2, y2] = coordinatesForTile(mission.map, destination);
+        const distance = Math.floor(Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
+        const movement = Math.floor(distance / action.ap);
+        if(isA(source.occupant, CharacterType)) {
+            (source.occupant as Character).ap -= movement;
+            destination.occupant = source.occupant;
+            source.occupant = null;
+            return game;
+        }
+    }
 }
 
 const DASH: Action = {

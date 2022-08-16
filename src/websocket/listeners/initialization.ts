@@ -1,4 +1,5 @@
 import { Socket } from "socket.io";
+import { actionExecution } from "./events/action_execution";
 import { actionIntention } from "./events/action_intention";
 import { helloMessage } from "./events/hello";
 import { joinGameMessage } from "./events/join_game";
@@ -28,6 +29,7 @@ function listen(socket: Socket) {
     socket.on('hello', wrap(helloMessage));
     socket.on('tile_interaction', wrap(tileInteraction));
     socket.on('action_intention', wrap(actionIntention));
+    socket.on('action_execution', wrap(actionExecution));
 }
 
 export {

@@ -1,4 +1,5 @@
 import { Translatable } from "../utility/strings"
+import { Game } from "./game";
 import { Tile } from "./map/tile";
 import { Mission } from "./missions/mission";
 
@@ -16,6 +17,7 @@ export type Action = {
     xp: number;
     uuid: string;
     available: (source: Tile, destination: Tile, action: Action, mission: Mission) => boolean;
+    execute?: (source: Tile, destination: Tile, action: Action, mission: Mission, game: Game) => Game;
     hasSecondarySelection: boolean;
 }
 
