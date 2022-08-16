@@ -7,7 +7,8 @@ const oneByOneMap: Map = {
             elevation: 0, 
             cover: null, 
             openable: false,
-            textures: []
+            textures: [],
+            uuid: 'efdsfsdfsd'
         }
     ],
     width: 1,

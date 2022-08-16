@@ -56,14 +56,16 @@ const map: Map = {
             elevation: 0,
             openable: false,
             occupant: character,
-            textures: []
+            textures: [],
+            uuid: 'fc11'
         },
         {
             cover: Cover.None,
             elevation: 0,
             openable: false,
             occupant: character2,
-            textures: []
+            textures: [],
+            uuid: 'ee92'
         }
     ],
     height: 1,
