@@ -4,7 +4,7 @@ import { Class } from '../models/characters/class';
 import { Race } from '../models/characters/race';
 import { Operator } from '../models/characters/operator';
 import { Difficulty, Game, Visibility } from '../models/game';
-import { Mission, TimeOfDay, Weather, spawn } from '../models/missions/mission';
+import { Mission, TimeOfDay, Weather, spawn, missionComplete, nextTurn } from '../models/missions/mission';
 import { Translatable } from '../utility/strings';
 import { randomUUID } from 'crypto';
 import { at, Map, parseMap } from '../models/map/map';
@@ -104,11 +104,9 @@ game.campaign.missions.forEach(mission => {
 
     // console.log(mission.map.grid);
 
-    while(game.workingSquad.some(c => c.alive) && !mission.objectives.every(o => o.resolver(game))) {
+    while(nextTurn(mission, game)) {
         turn++;
-        involved.forEach(character => {
-            character.ap = Math.min(character.ap + (character.class.ap || 2), character.class.maxAp);
-        })
+        console.log(`Turn ${turn}`);
         involved.forEach(character => {
             if(character.alive) {
                 // TODO: choose action

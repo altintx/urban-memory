@@ -86,10 +86,10 @@ function nextTurn(mission: Mission, game: Game): boolean {
     
     if(mission.turns.length === 0) {
         mission.turns.push({
-            members: game.characters.map(c => ({
-                ...c,
-                ap: (c.class.ap || 2)
-            })).sort(sortByInitiative),
+            members: game.characters.map(c => {
+                c.ap = (c.class.ap || 2);
+                return c;
+            }).sort(sortByInitiative),
             actions: [],
         } as Turn);
     } else {
@@ -97,10 +97,10 @@ function nextTurn(mission: Mission, game: Game): boolean {
         const nextTurn = {
             members: lastTurn.members
                 .filter(c => c.alive)
-                .map(character => ({
-                    ...character,
-                    ap: Math.min(character.ap + (character.class.ap || 2), character.class.maxAp)
-                }))
+                .map(character => {
+                    character.ap = Math.min(character.ap + (character.class.ap || 2), character.class.maxAp); 
+                    return character;
+                })
                 .sort(sortByInitiative),
             actions: [],
         } as Turn;
@@ -143,5 +143,7 @@ export {
     TimeOfDay,
     parseMission,
     serializeMission,
-    spawn
+    spawn,
+    nextTurn,
+    missionComplete,
 };
