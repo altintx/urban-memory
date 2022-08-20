@@ -15,7 +15,8 @@ const map: Map = parseMap(require('../../resources/map/empty.json'));
 const hunter: Class = {
     name: new Translatable({ en: "Hunter" }),
     ap: 2,
-    maxAp: 3
+    maxAp: 3,
+    initiativeModifier: 0,
 }
 const race: Race = {
     name: new Translatable({ en: 'human' })
@@ -37,7 +38,9 @@ const lamblo: Character = {
     race: race,
     traits: [],
     ap: hunter.ap,
-    uuid: randomUUID()
+    uuid: randomUUID(),
+    missions: [],
+    xp: 0
 }
 const olabom: Character = {
     alive: true,
@@ -49,7 +52,9 @@ const olabom: Character = {
     race: race,
     traits: [],
     ap: hunter.ap,
-    uuid: randomUUID()
+    uuid: randomUUID(),
+    missions: [],
+    xp: 0,
 }
 
 const mission: Mission = {
@@ -69,7 +74,8 @@ const mission: Mission = {
         { x: 10, y: 0, faction: Faction.Player}, 
         { x: 10, y: 19, faction: Faction.Enemy }
     ],
-    uuid: randomUUID()
+    uuid: randomUUID(),
+    turns: [],
 }
 const campaign: Campaign = {
     missions: [mission]

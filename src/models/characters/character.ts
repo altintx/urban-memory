@@ -20,6 +20,8 @@ type Character = {
     traits: Base[];
     hp: number;
     ap: number;
+    xp: number;
+    missions: string[];
 }
 
 function parseCharacter(json: any): Character {
@@ -33,7 +35,9 @@ function parseCharacter(json: any): Character {
         traits: [],
         hp: parseInt(json['hp']),
         ap: parseInt(json['ap']),
-        uuid: json['uuid']
+        xp: parseInt(json['xp']),
+        uuid: json['uuid'],
+        missions: json['missions'], // .filter(uuid => isMission(uuid)) // how to know if it's a valid mission? need to know the campaign
     }
 }
 
@@ -64,7 +68,9 @@ const CharacterType: Character = {
     traits: [],
     hp: 0,
     ap: 0,
-    uuid: randomUUID()
+    xp: 0,
+    uuid: randomUUID(),
+    missions: [],
 };
 
 function applyDamage(character: Character, damage: DamageInfliction) {
@@ -75,6 +81,10 @@ function applyDamage(character: Character, damage: DamageInfliction) {
     return character;
 }
 
+function initiativeFor(character: Character): number {
+    return character.xp * 3 + character.class.initiativeModifier;
+}
+
 export {
     Character,
     Faction,
@@ -83,5 +93,6 @@ export {
     isPlayer,
     applyDamage,
     serializeCharacter,
-    CharacterType
+    CharacterType,
+    initiativeFor,
 };

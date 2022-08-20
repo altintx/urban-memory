@@ -13,7 +13,12 @@ const parseCampaign = (json: object): Campaign => {
     return campaign;
 }
 
+const isMission = (uuid: String, campaign: Campaign): boolean => {
+    return campaign.missions.some(m => m.uuid === uuid);
+}
+
 export {
     Campaign,
-    parseCampaign
+    parseCampaign,
+    isMission
 }
