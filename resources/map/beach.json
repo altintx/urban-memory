@@ -13,7 +13,9 @@
             "elevation": 0,
             "cover": "None",
             "openable": false,
-            "textures": [{ "graphic": "water", "animation": [], "offset": [0, 0, 0 ]}]
+            "textures": [{ "graphic": "water", "animation": [
+                { "graphic": "waves", "direction": "down", "total": 4, "ms": 5000 }
+            ], "offset": [0, 0, 0 ]}]
         },
         "sand": {
             "elevation": 0,
