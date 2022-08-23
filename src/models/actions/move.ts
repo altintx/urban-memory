@@ -21,10 +21,9 @@ const MOVE: Action = {
         const [x2, y2] = coordinatesForTile(mission.map, destination);
         
         if(destination.occupant) return false;
-        const maxMovement = 5;
-        const distance = Math.floor(Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
-        if(distance <= maxMovement) return true;
-        return false;
+        const maxMovement = 5 * action.ap;
+        const distance = Math.abs(x2-x1) + Math.abs(y2-y1);
+        return (distance <= maxMovement);
         // todo
         // find path from source to destination
         // find character's allowed movement
@@ -52,7 +51,7 @@ const DASH: Action = {
         en: "Dash"
     }),
     cooldown: 1,
-    ap: 2
+    ap: 2,
 }
 
 export { MOVE, DASH };

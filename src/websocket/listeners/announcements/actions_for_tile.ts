@@ -10,7 +10,8 @@ function actionsForSelecting(tile: Tile) {
         NAMED_ACTIONS.SELECT_ATTENTION,
         NAMED_ACTIONS.ATTACK_PRIMARY,
         NAMED_ACTIONS.ATTACK_SECONDARY,
-        NAMED_ACTIONS.MOVE
+        NAMED_ACTIONS.MOVE,
+        NAMED_ACTIONS.DASH,
     ].map(i => actions[i])
 }
 
