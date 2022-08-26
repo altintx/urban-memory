@@ -3,7 +3,6 @@ import { Game } from "../../../models/game";
 import { serializeTile, Tile } from "../../../models/map/tile";
 
 export default function tileInteractionAnnouncement(operator: Operator, tile: Tile | Tile[], announcer: Operator, mode: string, sig: string) {
-    console.log('tileInteractionAnnouncement');
     if('length' in tile) {
         operator.socket.emit("tile_interaction", {
             tiles: tile.map(tile => serializeTile(tile)),
