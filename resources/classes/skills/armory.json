@@ -1,0 +1,50 @@
+{
+    "name": {
+        "en": "Armory",
+        "de": "Waffenkammer",
+        "fr": "Armurerie",
+        "es": "Armería",
+        "it": "Armeria",
+        "pl": "Zbrojownia",
+        "pt": "Armaria",
+        "ru": "Оружейная",
+        "zh": "武器库",
+        "ja": "武器庫",
+        "ko": "무기고"
+    },
+    "description": {
+        "en": "The armory skill let's you carry more firepower than ever.",
+        "de": "Die Waffenkammer erlaubt es dir mehr Feuerkraft als je zuvor zu tragen.",
+        "fr": "La compétence Armurerie vous permet de transporter plus de puissance de feu que jamais.",
+        "es": "La habilidad de armería te permite llevar más poder de fuego que nunca.",
+        "it": "La competenza Armeria ti permette di trasportare più potenza di fuoco che mai.",
+        "pl": "Umiejętność zbrojowni pozwala ci nosić więcej siły ognia niż kiedykolwiek.",
+        "pt": "A habilidade de armas permite que você carregue mais poder de fogo do que nunca.",
+        "ru": "Навык оружейной позволяет вам носить больше огневой мощи, чем когда-либо.",
+        "zh": "武器库技能让你携带的火力比以往任何时候都要强大。",
+        "ja": "武器庫スキルは、これまでにないほどの火力を携帯できます。",
+        "ko": "무기고 기술은 이전보다 더 많은 파워를 지닐 수 있습니다."
+    },
+    "skills": [
+        {
+            "name": {
+                "en": "Deep pockets",
+                "de": "Tiefe Taschen",
+                "fr": "Poche profonde",
+                "es": "Bolsillos profundos",
+                "it": "Tasche profonde",
+                "pl": "Głębokie kieszenie",
+                "pt": "Bolsos profundos",
+                "ru": "Глубокие карманы",
+                "zh": "深口袋",
+                "ja": "深いポケット",
+                "ko": "깊은 포켓"
+            },
+            "stats": {
+                "strength": {
+                    "passive": 1
+                }
+            }
+        }
+    ]
+}

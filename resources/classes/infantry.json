@@ -1,0 +1,16 @@
+{
+    "name": {
+        "en": "Infantry",
+        "de": "Soldatin",
+        "ru": "Пехота",
+        "pl": "Żołnierz",
+        "zh-cn": "步兵",
+        "fr": "Infanterie"
+    },
+    "maxAp": 3,
+    "movement": 5,
+    "skillTree": [
+        ["sniper", ["call_your_shot", ["walls_have_eyes", ["spy", "recon"]]]],
+        ["heavy", ["halo", ["armory", ["engineer", "medic"]]]]
+    ]
+}

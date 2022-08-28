@@ -1,0 +1,70 @@
+{
+    "name": {
+        "en": "Halo",
+        "de": "Heiligenschein",
+        "fr": "Halo",
+        "es": "Aureola",
+        "it": "Aureola",
+        "pl": "Światło",
+        "pt": "Auréola",
+        "ru": "Ореол",
+        "zh": "光环",
+        "ja": "光環",
+        "ko": "빛의 고리",
+        "nl": "Halo",
+        "sv": "Haló",
+        "hi": "हलो",
+        "tr": "Hale",
+        "vi": "hào quang",
+        "th": "เฮลโล",
+        "cs": "Svatozář"
+    },
+    "description": {
+        "en": "The unit you target will take increased damage from other allies for this turn.",
+        "de": "Das Ziel der Fähigkeit erhält für diesen Zug erhöhten Schaden von allen Verbündeten.",
+        "fr": "La cible de cette compétence subira des dégâts supplémentaires de la part de ses alliés pour ce tour.",
+        "es": "El objetivo de esta habilidad recibirá daño adicional de sus aliados durante este turno.",
+        "it": "L'unità bersaglio subirà danni maggiori dagli alleati per questo turno.",
+        "pl": "Celujesz jednostkę, która otrzyma większe obrażenia od sojuszników w tym ture.",
+        "pt": "A unidade alvo receberá dano adicional de aliados para este turno.",
+        "ru": "Цель получит увеличенный урон от союзников на этот ход.",
+        "zh": "本回合，目标单位会受到来自其他盟友的额外伤害。",
+        "ja": "このターン、対象ユニットは味方から与えられるダメージが増加します。",
+        "ko": "대상 유닛은 이번 턴 동안 다른 동맹군에게서 받는 피해량이 증가합니다.",
+        "nl": "De eenheid die je aanvalt zal meer schade krijgen van andere bondgenoten voor deze beurt.",
+        "sv": "Målet för denna förmåga kommer att ta mer skada från andra allierade under denna omgång.",
+        "hi": "आपके लक्ष्य इस चाल के लिए अन्य सहयोगी से अधिक नुकसान लेंगे।",
+        "tr": "Hedefiniz bu tur boyunca diğer dostlardan daha fazla hasar alacak.",
+        "vi": "Đơn vị mục tiêu sẽ nhận được sát thương tăng thêm từ các đồng minh khác trong lượt này.",
+        "th": "เป้าหมายของคุณจะได้รับความเสียหายเพิ่มขึ้นจากฝ่ายเพื่อนร่วมในรอบนี้",
+        "cs": "Cílová jednotka bude v tomto kole získávat zvýšené poškození od ostatních spojenců."
+    },
+    "actions": [
+        {
+            "name": {
+                "en": "Halo",
+                "de": "Heiligenschein",
+                "fr": "Halo",
+                "es": "Aureola",
+                "it": "Aureola",
+                "pl": "Światło",
+                "pt": "Auréola",
+                "ru": "Ореол",
+                "zh": "光环",
+                "ja": "光環",
+                "ko": "빛의 고리",
+                "nl": "Halo",
+                "sv": "Haló",
+                "hi": "हलो",
+                "tr": "Hale",
+                "vi": "hào quang",
+                "th": "เฮลโล",
+                "cs": "Svatozář"
+            },
+            "ap": 1,
+            "xp": 10,
+            "cooldown": 3,
+            "extends": "e1e8f8f0-f8f0-11e9-b210-d663bd873d93"
+        }
+    ]
+}

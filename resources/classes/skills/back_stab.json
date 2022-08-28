@@ -1,0 +1,26 @@
+{
+    "name": {
+        "en": "Back Stab",
+        "de": "Rückwärtsstich",
+        "fr": "Coup de poignard"
+    },
+    "description": {
+        "en": "A back stab is a surprise attack from behind and is guaranteed to hit. It can be used twice per mission.",
+        "de": "Ein Rückwärtsstich ist ein Angriff von hinten und trifft immer. Er kann zweimal pro Mission eingesetzt werden.",
+        "fr": "Un coup de poignard est une attaque surprise de derrière et est garanti de toucher. Il peut être utilisé deux fois par mission."
+    },
+    "stats": {},
+    "actions": [
+        {
+            "name": {
+                "en": "Back Stab",
+                "de": "Rückwärtsstich",
+                "fr": "Coup de poignard"
+            },
+            "ap": 1,
+            "xp": 100,
+            "cooldown": 10,
+            "count": 2
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "name": {
+        "en": "Walls Have Eyes",
+        "de": "Wände haben Augen",
+        "fr": "Les murs ont des yeux"
+    },
+    "description": {
+        "en": "Permanent surveliance",
+        "de": "Permanente Überwachung",
+        "fr": "Surveillance permanente"
+    },
+    "stats": {},
+    "actions": [
+        {
+            "name": {
+                "en": "Drop Camera",
+                "de": "Kamera ablegen",
+                "fr": "Déposer la caméra"
+            },
+            "description": {
+                "en": "Drop a camera on this tile, to continue monitoring activity here even after you move away.",
+                "de": "Lege eine Kamera auf dieses Feld, um die Aktivität hier auch nachdem du dich entfernt hast zu überwachen.",
+                "fr": "Déposez une caméra sur cette case pour continuer à surveiller l'activité ici même après avoir quitté le secteur."        
+            },
+            "ap": 1,
+            "xp": 0,
+            "cooldown": 0,
+            "count": 1
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": {
+        "en": "Scout",
+        "fr": "Eclaireur",
+        "de": "Späher"
+    },
+    "maxAp": 3,
+    "movement": 6,
+    "skillTree": [
+        ["spy", ["walls_have_eyes", ["back_stab", ["sniper", "medic"]]]],
+        ["recon", ["adreneline", ["trip_wire", ["sniper", "medic"]]]]
+    ]
+}

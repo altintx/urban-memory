@@ -1,0 +1,40 @@
+{
+    "name": {
+        "en": "Recon",
+        "fr": "Explorer",
+        "de": "Aufklärung"
+    },
+    "description": {
+        "en": "A fast moving unit that can scout ahead and reveal enemy positions.",
+        "fr": "Une unité rapide qui peut explorer et révéler les positions ennemies.",
+        "de": "Eine schnelle Einheit, die vorausgehen kann und feindliche Positionen aufdecken kann."
+    },
+    "stats": {
+        "intelligence": -1,
+        "charisma": 0,
+        "dexterity": 1,
+        "strength": 1,
+        "constitution": 0,
+        "wisdom": 1
+    },
+    "actions": [],
+    "skills": [
+        {
+            "name": {
+                "en": "Scout",
+                "fr": "Explorer",
+                "de": "Aufklärung"
+            },
+            "description": {
+                "en": "Scout ahead to reveal enemy positions.",
+                "fr": "Explorer pour révéler les positions ennemies.",
+                "de": "Vorausgehen, um feindliche Positionen aufzudecken."
+            },
+            "stats": {
+                "wisdom": {
+                    "aggressive": 1
+                }
+            }
+        }
+    ]
+}

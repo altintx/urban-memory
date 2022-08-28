@@ -1,0 +1,44 @@
+{
+    "name": {
+        "en": "Heavy",
+        "de": "Schwer",
+        "fr": "Lourd"
+    },
+    "description": {
+        "en": "A soldier with the biggest gun",
+        "de": "Ein Soldat mit dem größten Gewehr",
+        "fr": "Un soldat avec le plus gros fusil"
+    },
+    "stats": {
+        "intelligence": 0,
+        "dexterity": -1,
+        "strength": 1,
+        "constitution": 1,
+        "charisma": 1,
+        "wisdom": 0
+    },
+    "gear": [
+        {
+            "name": {
+                "en": "Mini Gun",
+                "de": "Minigewehr",
+                "fr": "Mini fusil"
+            },
+            "description": {
+                "en": "A small gun that shoots a lot of bullets",
+                "de": "Ein kleines Gewehr, das viele Kugeln schießt",
+                "fr": "Un petit fusil qui tire beaucoup de balles"
+            },
+            "type": "weapon",
+            "subtype": "primary",
+            "stats": {
+                "damage": 15,
+                "range": 10,
+                "accuracy": 0,
+                "critical": 0,
+                "weight": 10
+            }
+
+        }
+    ]
+}

@@ -1,0 +1,73 @@
+{
+    "name": {
+        "en": "Sniper",
+        "ru": "Снайпер",
+        "de": "Scharfschütze",
+        "fr": "Sniper",
+        "es": "Francotirador",
+        "it": "Sniper",
+        "pl": "Snajper"
+    },
+    "description": {
+        "en": "Sniper is a class that specializes in long-range combat. They are equipped with a sniper rifle and a sidearm. They are able to use a variety of scopes and attachments to increase their effectiveness at long range. They are also able to use a variety of grenades and explosives to take out groups of enemies at once.",
+        "ru": "Снайпер — класс, который специализируется на дальнобойном бою. Они оснащены снайперской винтовкой и пистолетом. Они могут использовать различные прицелы и приспособления, чтобы увеличить эффективность в дальнем бою. Они также могут использовать различные гранаты и взрывчатку, чтобы уничтожить группы врагов одновременно.",
+        "de": "Scharfschützen sind eine Klasse, die sich auf den Langstrecken-Kampf spezialisiert hat. Sie sind mit einem Scharfschützengewehr und einer Pistole ausgestattet. Sie können eine Vielzahl von Zielfernrohren und Zubehörteilen verwenden, um ihre Effektivität bei langer Reichweite zu erhöhen. Sie können auch eine Vielzahl von Granaten und Sprengstoffen verwenden, um Gruppen von Feinden auf einmal auszuschalten.",
+        "fr": "Le Sniper est une classe qui se spécialise dans le combat à longue portée. Ils sont équipés d'un fusil de sniper et d'une arme de poing. Ils peuvent utiliser une variété de viseurs et d'accessoires pour augmenter leur efficacité à longue portée. Ils peuvent également utiliser une variété de grenades et d'explosifs pour éliminer des groupes d'ennemis en une seule fois.",
+        "es": "El francotirador es una clase que se especializa en combate a larga distancia. Están equipados con un rifle de francotirador y un arma de mano. Pueden usar una variedad de miras y accesorios para aumentar su efectividad a larga distancia. También pueden usar una variedad de granadas y explosivos para eliminar grupos de enemigos de una sola vez.",
+        "it": "Lo Sniper è una classe che si specializza nel combattimento a lunga distanza. Sono dotati di un fucile da cecchino e di un fucile d'assalto. Possono utilizzare una varietà di mirini e accessori per aumentare l'efficacia a lunga distanza. Possono anche utilizzare una varietà di granate e esplosivi per eliminare gruppi di nemici in una sola volta.",
+        "pl": "Snajper to klasa, która specjalizuje się w walki na długą odległość. Posiadają karabin snajperski i pistolet. Mogą używać różnego rodzaju celowników i akcesoriów, aby zwiększyć skuteczność w długim zasięgu. Mogą również używać różnego rodzaju granatów i materiałów wybuchowych, aby zniszczyć grupy wrogów jednocześnie."
+    },
+    "stats": {
+        "intelligence": 1,
+        "dexterity": 1,
+        "strength": 1,
+        "constitution": -1, 
+        "charisma": 0,
+        "wisdom": 0
+    },
+    "actions": [
+        {
+            "name": {
+                "en": "Head Shot",
+                "ru": "Выстрел в голову",
+                "de": "Kopfschuss",
+                "fr": "Tir de tête",
+                "es": "Disparo en la cabeza",
+                "it": "Colpo alla testa",
+                "pl": "Strzał w głowę"
+            }
+        }
+    ],
+    "gear": [
+        {
+            "name": {
+                "en": "Sniper Rifle",
+                "ru": "Снайперская винтовка",
+                "de": "Scharfschützengewehr",
+                "fr": "Fusil de sniper",
+                "es": "Rifle de francotirador",
+                "it": "Fucile da cecchino",
+                "pl": "Karabin snajperski"
+            },
+            "description": {
+                "en": "A long-range rifle that is used to take out enemies from a distance.",
+                "ru": "Дальнобойная винтовка, которая используется для уничтожения врагов на расстоянии.",
+                "de": "Ein Langstreckengewehr, das verwendet wird, um Feinde von einer Entfernung aus zu eliminieren.",
+                "fr": "Un fusil à longue portée utilisé pour éliminer les ennemis à distance.",
+                "es": "Un rifle de largo alcance que se usa para eliminar a los enemigos a distancia.",
+                "it": "Un fucile a lunga portata utilizzato per eliminare gli avversari a distanza.",
+                "pl": "Karabin o długim zasięgu, który służy do eliminowania wrogów z odległości."
+            },
+            "type": "weapon",
+            "subtype": "primary",
+            "rarity": "common",
+            "stats": {
+                "damage": 10,
+                "range": 10,
+                "accuracy": 10,
+                "critical": 10,
+                "weight": 10
+            }
+        }
+    ]
+}

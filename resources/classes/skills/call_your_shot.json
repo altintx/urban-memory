@@ -1,0 +1,52 @@
+{
+    "name": {
+        "en": "Call your shot",
+        "de": "Rufe deinen Schuss",
+        "fr": "Appelle ton tir",
+        "es": "Llama a tu tiro",
+        "it": "Chiamare il tuo tiro",
+        "pl": "Zadzwoń do swojego strzału",
+        "pt": "Chame seu tiro",
+        "ru": "Призовите свой выстрел",
+        "zh": "呼叫你的射击",
+        "ko": "당신의 샷을 부르십시오",
+        "ja": "あなたのショットを呼び出します",
+        "vi": "Gọi bắn của bạn"
+    },
+    "description": {
+        "en": "Target an enemy in an ally's line of sight who wouldn't otherwise be targeted by your abilities.",
+        "de": "Ziele einen Feind in der Sichtlinie eines Verbündeten an, der ansonsten nicht von deinen Fähigkeiten anvisiert werden würde.",
+        "fr": "Ciblez un ennemi dans le champ de vision d'un allié qui ne serait pas autrement ciblé par vos capacités.",
+        "es": "Apunta a un enemigo en la línea de visión de un aliado que de otra manera no sería objetivo de tus habilidades.",
+        "it": "Individua un nemico nella linea di vista di un alleato che non sarebbe altrimenti bersagliato dalle tue abilità.",
+        "pl": "Celuj wroga w lini wzroku sojusznika, który w przeciwnym razie nie byłby celem twoich zdolności.",
+        "pt": "Aponte um inimigo na linha de visão de um aliado que de outra forma não seria alvo de suas habilidades.",
+        "ru": "Цель врага в поле зрения союзника, который в противном случае не будет целью ваших способностей.",
+        "zh": "以盟友的视线为目标，以敌人为目标，否则你的能力将不会被目标。",
+        "ko": "당신의 능력에 의해 그렇지 않은 경우에도 동료의 시야에있는 적을 대상으로합니다.",
+        "ja": "あなたの能力によってそうでない場合、味方の視界内の敵をターゲットにします。",
+        "vi": "Mục tiêu một kẻ thù trong tầm nhìn của một đồng minh mà không thể được mục tiêu bởi khả năng của bạn."
+    },
+    "actions": [
+        {
+            "name": {
+                "en": "Call your shot",
+                "de": "Rufe deinen Schuss",
+                "fr": "Appelle ton tir",
+                "es": "Llama a tu tiro",
+                "it": "Chiamare il tuo tiro",
+                "pl": "Zadzwoń do swojego strzału",
+                "pt": "Chame seu tiro",
+                "ru": "Призовите свой выстрел",
+                "zh": "呼叫你的射击",
+                "ko": "당신의 샷을 부르십시오",
+                "ja": "あなたのショットを呼び出します",
+                "vi": "Gọi bắn của bạn"
+            },
+            "ap": 1,
+            "cooldown": 3,
+            "xp": 50,
+            "count": 100
+        }
+    ]
+}

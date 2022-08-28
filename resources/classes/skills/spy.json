@@ -1,0 +1,66 @@
+{
+    "name": {
+        "en": "Espionage",
+        "de": "Spionage",
+        "fr": "Espionnage",
+        "es": "Espionaje",
+        "it": "Spionaggio",
+        "pl": "Szpiegostwo",
+        "pt": "Espionagem",
+        "ru": "Шпионаж",
+        "zh": "间谍",
+        "ja": "スパイ",
+        "ko": "스파이",
+        "nl": "Spionage",
+        "sv": "Spionage",
+        "hi": "जादूगर",
+        "tr": "Casus belli",
+        "vi": "Truy nã",
+        "ar": "التجسس",
+        "th": "การสืบสวน",
+        "cs": "Špionáž"
+    },
+    "description": {
+        "en": "You are trained in the shadows. Enemies are less likely to notice you, and you can move more quietly.",
+        "de": "Sie sind in den Schatten geschult. Feinde sind weniger wahrscheinlich, Sie zu bemerken, und Sie können leiser bewegen.",
+        "fr": "Vous êtes formé dans les ombres. Les ennemis sont moins susceptibles de vous remarquer et vous pouvez vous déplacer plus silencieusement.",
+        "es": "Estás entrenado en las sombras. Los enemigos son menos propensos a notarte y puedes moverte más silenciosamente.",
+        "it": "Sei stato addestrato nelle ombre. I nemici sono meno propensi a notare te e puoi muoverti più silenziosamente.",
+        "pl": "Jesteś szpiegiem. Wrogowie są mniej skłonni do zauważenia ciebie, a ty możesz poruszać się cicho.",
+        "pt": "Você é treinado nas sombras. Os inimigos são menos propensos a notar você e você pode se mover mais silenciosamente.",
+        "ru": "Вы обучены в тени. Враги меньше склонны заметить вас, и вы можете передвигаться тихо.",
+        "zh": "你在阴影中受过训练。敌人不太可能注意到你，你可以更安静地移动。",
+        "ja": "影の中で訓練されています。敵はあなたに気づくことが少なく、あなたはより静かに動くことができます。",
+        "ko": "그림자에서 훈련되었습니다. 적들은 당신을 더 잘 알지 못하고, 더 조용히 움직일 수 있습니다.",
+        "nl": "Je bent getraind in de schaduwen. Vijanden zijn minder geneigd je te zien, en je kunt je meer stil bewegen.",
+        "sv": "Du är utbildad i skuggorna. Fiender är mindre benägna att märka dig och du kan röra dig tystare.",
+        "hi": "आप छायांशी तैयार किए गए हैं। दुश्मन आपको ध्यान में नहीं रखेंगे, और आप अधिक चुपचाप चल सकते हैं।",
+        "tr": "Gölge içinde eğitilmişsiniz. Düşmanlar sizi daha az fark edecek ve daha sessizce hareket edebilirsiniz.",
+        "vi": "Bạn được đào tạo trong bóng tối. Kẻ thù ít có khả năng để nhận ra bạn, và bạn có thể di chuyển một cách yên tĩnh hơn.",
+        "ar": "لقد تم تدريبك في الظلام. الأعداء أقل عرضة للاحتفاظ بك، ويمكنك التحرك بصوت أقل.",
+        "th": "คุณได้รับการฝึกฝนในร่มรำมะนาว ศัตรูจะไม่สนใจคุณมากนัก และคุณสามารถเคลื่อนไหวได้เงียบสงบ",
+        "cs": "Byli jste vystaveni tréninku v stínech. Nepřátelé jsou méně pravděpodobní, že vás zaujme, a můžete se pohybovat tiše."
+    },
+    "image": "https://i.imgur.com/4ZQZ7Zm.png",
+    "stats": {
+        "intelligence": 1,
+        "charisma": 1,
+        "dexterity": 1,
+        "strength": -1,
+        "constitution": -1,
+        "wisdom": 1
+    },
+    "actions": [],
+    "skills": [{
+        "name": {
+            "en": "Espionage",
+            "de": "Spionage",
+            "fr": "Espionnage"
+        },
+        "stats": {
+            "charisma": {
+                "aggressive": 1
+            }
+        }
+    }]
+}

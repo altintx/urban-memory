@@ -1,0 +1,54 @@
+{
+    "name": {
+        "en": "Corpsmen",
+        "de": "Sanitäter",
+        "fr": "Médecins",
+        "es": "Médicos",
+        "it": "Medici",
+        "pl": "Sanitariusze",
+        "pt": "Médicos",
+        "ru": "Медики",
+        "zh": "医生"
+    },
+    "description": {
+        "en": "Corpsmen are the backbone of the military. They are the ones who keep the soldiers alive and healthy. They are the ones who keep the military running.",
+        "de": "Sanitäter sind die Rückgrat der Armee. Sie sind diejenigen, die die Soldaten am Leben und gesund halten. Sie sind diejenigen, die die Armee am Laufen halten.",
+        "fr": "Les médecins sont le pilier de l'armée. Ce sont eux qui gardent les soldats en vie et en bonne santé. Ce sont eux qui gardent l'armée en marche.",
+        "es": "Los médicos son la columna vertebral de las fuerzas armadas. Son los que mantienen a los soldados vivos y sanos. Son los que mantienen el ejército funcionando.",
+        "it": "I medici sono la colonna vertebrale dell'esercito. Sono loro che tengono i soldati vivi e sani. Sono loro che tengono l'esercito in funzione.",
+        "pl": "Sanitariusze są kręgosłupem wojsk. To oni utrzymują żołnierzy przy życiu i zdrowych. To oni utrzymują wojsko w ruchu.",
+        "pt": "Os médicos são a coluna vertebral do exército. São eles que mantêm os soldados vivos e saudáveis. São eles que mantêm o exército funcionando.",
+        "ru": "Медики - это основа военной. Они те, кто держит солдат живыми и здоровыми. Они те, кто поддерживает военную работу.",
+        "zh": "医生是军队的支柱。他们是那些让士兵保持活力和健康的人。他们是那些让军队运行的人。"
+    },
+    "actions": [
+        {
+            "name": {
+                "en": "Heal",
+                "de": "Heilen",
+                "fr": "Guérir",
+                "es": "Curar",
+                "it": "Guarire",
+                "pl": "Uleczyć",
+                "pt": "Cura",
+                "ru": "Лечить",
+                "zh": "治疗"
+            },
+            "description": {
+                "en": "Heal a unit for 10 HP.",
+                "de": "Heile eine Einheit um 10 HP.",
+                "fr": "Guérissez une unité de 10 HP.",
+                "es": "Cura una unidad por 10 HP.",
+                "it": "Guarisci un'unità per 10 HP.",
+                "pl": "Ulecz jednostkę o 10 HP.",
+                "pt": "Cure uma unidade por 10 HP.",
+                "ru": "Исцелите юнит на 10 HP.",
+                "zh": "治疗一个单位10点生命值。"
+            },
+            "hasSecondarySelection": true,
+            "ap": 1,
+            "range": 1,
+            "xp": 30
+        }
+    ]
+}

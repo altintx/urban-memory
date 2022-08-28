@@ -1,0 +1,43 @@
+{
+    "name": {
+        "en": "Adrenaline",
+        "de": "Adrenalin",
+        "ja": "アドレナリン",
+        "fr": "Adrénaline",
+        "zh": "血氧酸",
+        "ru": "Адреналин",
+        "pl": "Adrenalina",
+        "ko": "아드레날린",
+        "es": "Adrenalina"
+    },
+    "description": {
+        "en": "Gain 1 extra adrenaline point.",
+        "de": "Erhält 1 extra Adrenalinpunkt.",
+        "ja": "アドレナリンポイントを1増やす。",
+        "fr": "Gagne 1 point d'adrénaline supplémentaire.",
+        "zh": "增加1点血氧酸。",
+        "ru": "Получить 1 дополнительный очко адреналина.",
+        "pl": "Dostajesz 1 punkt adrenaliny.",
+        "ko": "아드레날린 포인트 1 증가.",
+        "es": "Gana 1 punto de adrenalina."
+    },
+    "actions": [
+        {
+            "name": {
+                "en": "Inject Adrenaline",
+                "de": "Adrenalininjektion",
+                "ja": "アドレナリンを注入",
+                "fr": "Injection d'adrénaline",
+                "zh": "注入血氧酸",
+                "ru": "Ввести адреналин",
+                "pl": "Wprowadź adrenaliny",
+                "ko": "아드레날린 주입",
+                "es": "Inyectar adrenalina"
+            },
+            "ap": -1,
+            "xp": 0,
+            "cooldown": 0,
+            "count": 1
+        }
+    ]
+}
