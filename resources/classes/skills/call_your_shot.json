@@ -27,26 +27,5 @@
         "ja": "あなたの能力によってそうでない場合、味方の視界内の敵をターゲットにします。",
         "vi": "Mục tiêu một kẻ thù trong tầm nhìn của một đồng minh mà không thể được mục tiêu bởi khả năng của bạn."
     },
-    "actions": [
-        {
-            "name": {
-                "en": "Call your shot",
-                "de": "Rufe deinen Schuss",
-                "fr": "Appelle ton tir",
-                "es": "Llama a tu tiro",
-                "it": "Chiamare il tuo tiro",
-                "pl": "Zadzwoń do swojego strzału",
-                "pt": "Chame seu tiro",
-                "ru": "Призовите свой выстрел",
-                "zh": "呼叫你的射击",
-                "ko": "당신의 샷을 부르십시오",
-                "ja": "あなたのショットを呼び出します",
-                "vi": "Gọi bắn của bạn"
-            },
-            "ap": 1,
-            "cooldown": 3,
-            "xp": 50,
-            "count": 100
-        }
-    ]
+    "actions": ["848cfbbc-0228-4fe6-9773-4b7a3b359c93"]
 }

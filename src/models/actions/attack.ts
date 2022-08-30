@@ -1,6 +1,5 @@
 import { Translatable } from "../../utility/strings";
 import { Action } from "../action";
-import { Character } from "../characters/character";
 import { Weapon } from "../characters/weapon";
 import { coordinatesForTile } from "../map/map";
 import { Tile } from "../map/tile";
@@ -26,7 +25,7 @@ const ATTACK_PRIMARY: Action = {
     ap: 1,
     xp: 10,
     cooldown: 0,
-    uuid: "e1e8f8f0-f8f0-11e9-b210-d663bd873d93",
+    uuid: "48044bbe-0817-4c1a-908c-5672ff2caba8",
     available(source, destination, action, mission): boolean {
         return available(source, destination, action, mission, {} as Weapon);
     },
@@ -39,7 +38,7 @@ const ATTACK_SECONDARY: Action = {
         en: "Attack (secondary)"
     }),
     cooldown: 0,
-    uuid: "f1e8f8f0-f8f0-11e9-b210-d663bd873d93",
+    uuid: "fb9dbab7-6e1e-408f-b74d-0706fb8d0f20",
     ap: 1
 }
 

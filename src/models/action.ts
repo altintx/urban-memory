@@ -12,6 +12,7 @@ export enum Cooldown {
 }
 export type Action = {
     name: Translatable;
+    description?: Translatable;
     ap: number;
     cooldown: Cooldown;
     xp: number;
@@ -19,6 +20,7 @@ export type Action = {
     available: (source: Tile, destination: Tile, action: Action, mission: Mission) => boolean;
     execute?: (source: Tile, destination: Tile, action: Action, mission: Mission, game: Game) => Game;
     hasSecondarySelection: boolean;
+    count?: number;
 }
 
 export function serializeAction(action: Action): object {
@@ -28,6 +30,7 @@ export function serializeAction(action: Action): object {
         cooldown: action.cooldown,
         xp: action.xp,
         uuid: action.uuid,
-        hasSecondarySelection: action.hasSecondarySelection
+        hasSecondarySelection: action.hasSecondarySelection,
+        count: action.count
     }
 }

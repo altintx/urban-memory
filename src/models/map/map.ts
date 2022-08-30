@@ -57,6 +57,12 @@ function coordinatesForTile(map: Map, tile: Tile): [number, number] {
     return coordsForIndex(map.width, map.height, ix);
 }
 
+function distanceBetween(map: Map, tile1: Tile, tile2: Tile): number {
+    const [x1, y1] = coordinatesForTile(map, tile1);
+    const [x2, y2] = coordinatesForTile(map, tile2);
+    return distance(x1, y1, x2, y2);
+}
+
 function getRing(map: Map, x1: number, y1: number, spread: number): Tile[] {
     return map.grid.reduce((tiles, tile, index) => {
         const [x2, y2] = coordsForIndex(map.width, map.height, index);
@@ -78,4 +84,5 @@ export {
     OutOfBoundsError,
     coordsForIndex,
     coordinatesForTile,
+    distanceBetween,
 };

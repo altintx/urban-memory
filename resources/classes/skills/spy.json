@@ -41,7 +41,6 @@
         "th": "คุณได้รับการฝึกฝนในร่มรำมะนาว ศัตรูจะไม่สนใจคุณมากนัก และคุณสามารถเคลื่อนไหวได้เงียบสงบ",
         "cs": "Byli jste vystaveni tréninku v stínech. Nepřátelé jsou méně pravděpodobní, že vás zaujme, a můžete se pohybovat tiše."
     },
-    "image": "https://i.imgur.com/4ZQZ7Zm.png",
     "stats": {
         "intelligence": 1,
         "charisma": 1,
@@ -50,17 +49,5 @@
         "constitution": -1,
         "wisdom": 1
     },
-    "actions": [],
-    "skills": [{
-        "name": {
-            "en": "Espionage",
-            "de": "Spionage",
-            "fr": "Espionnage"
-        },
-        "stats": {
-            "charisma": {
-                "aggressive": 1
-            }
-        }
-    }]
+    "buffs": ["de26669e-59b7-4611-984c-441841c0e63b"]
 }

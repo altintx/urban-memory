@@ -10,17 +10,5 @@
         "fr": "Un coup de poignard est une attaque surprise de derrière et est garanti de toucher. Il peut être utilisé deux fois par mission."
     },
     "stats": {},
-    "actions": [
-        {
-            "name": {
-                "en": "Back Stab",
-                "de": "Rückwärtsstich",
-                "fr": "Coup de poignard"
-            },
-            "ap": 1,
-            "xp": 100,
-            "cooldown": 10,
-            "count": 2
-        }
-    ]
+    "actions": ["0610e166-d452-4896-995c-bb0e001c7e62"]
 }

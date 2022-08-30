@@ -39,32 +39,5 @@
         "th": "เป้าหมายของคุณจะได้รับความเสียหายเพิ่มขึ้นจากฝ่ายเพื่อนร่วมในรอบนี้",
         "cs": "Cílová jednotka bude v tomto kole získávat zvýšené poškození od ostatních spojenců."
     },
-    "actions": [
-        {
-            "name": {
-                "en": "Halo",
-                "de": "Heiligenschein",
-                "fr": "Halo",
-                "es": "Aureola",
-                "it": "Aureola",
-                "pl": "Światło",
-                "pt": "Auréola",
-                "ru": "Ореол",
-                "zh": "光环",
-                "ja": "光環",
-                "ko": "빛의 고리",
-                "nl": "Halo",
-                "sv": "Haló",
-                "hi": "हलो",
-                "tr": "Hale",
-                "vi": "hào quang",
-                "th": "เฮลโล",
-                "cs": "Svatozář"
-            },
-            "ap": 1,
-            "xp": 10,
-            "cooldown": 3,
-            "extends": "e1e8f8f0-f8f0-11e9-b210-d663bd873d93"
-        }
-    ]
+    "actions": ["52015273-9c15-48ed-ae00-6d57a8d9afd7"]
 }

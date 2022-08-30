@@ -15,20 +15,5 @@
         "zh": "治疗队友，攻击敌人。",
         "ru": "Восстанавливает здоровье и наносит урон врагам."
     },
-    "actions": [
-        {
-            "name": {
-                "en": "Apply leech for up to 4HP",
-                "de": "Lebensraub für bis zu 4 Leben",
-                "ja": "回復効果を4HPまで付与",
-                "fr": "Applique un bonus de régénération pour jusqu'à 4 points de vie",
-                "zh": "恢复力果，恢复4点生命值",
-                "ru": "Наносит урон врагам до 4 ед."
-                
-            },
-            "ap": 1,
-            "xp": 20,
-            "cooldown": 4
-        }
-    ]
+    "actions": ["957c3e89-069a-4c1d-9eb9-67c8b0b11afa"]
 }
