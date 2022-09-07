@@ -7,5 +7,6 @@ export default function gameStateAnnouncement(game: Game, operator: Operator, si
         operator.socket.emit("game_state", serializeGame(game), sig);
     } else {
         operator.socket.emit("game_state", serializeGame(game));
+        console.warn("gameStateAnnouncement: sig is null");
     }
 }

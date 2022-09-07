@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as http from 'http';
 import { Server } from 'socket.io';
-import { listen } from './src/websocket/listeners/initialization';
+import { listen } from './src/websocket/game/initialization';
 
 const app = express();
 const server = http.createServer(app);

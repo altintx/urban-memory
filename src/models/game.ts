@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import leftGameAnnouncement from '../websocket/listeners/announcements/left_game';
+import leftGameAnnouncement from '../websocket/game/announcements/left_game';
 import { endGame, setGame } from '../sessions';
 import { Character, Faction, parseCharacter, serializeCharacter } from './characters/character';
 import { Operator } from './characters/operator';
@@ -90,7 +90,8 @@ function transferOperatorOrEnd(game:Game, departingOperator: Operator): Game | n
 }
 
 function join(game: Game, operator: Operator): Game {
-    const newGame = Object.assign({}, game, { operators: game.operators.concat(operator) });
+    const characters = game.characters.map(c => c.operator === null ? Object.assign({}, c, { operator: operator }) : c);
+    const newGame = Object.assign({}, game, { operators: game.operators.concat(operator), characters: characters });
     setGame(newGame);
     return newGame;
 }

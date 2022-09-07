@@ -1,7 +1,6 @@
 import { enumValue } from "../../utility/enum";
 import { Translatable } from "../../utility/strings";
-import { isA } from "../../utility/types";
-import { Character, CharacterType, Faction, initiativeFor, parseCharacter, serializeCharacter } from "../characters/character";
+import { alive, Character, Faction, initiativeFor, parseCharacter, serializeCharacter } from "../characters/character";
 import { Game } from "../game";
 import { at, getRing, Map, parseMap, serializeMap } from "../map/map";
 import { Obstacle, parseObstacle, serializeObstacle } from "../obstacle/obstacle";
@@ -23,9 +22,10 @@ type Mission = {
     spawnPoints: SpawnPoint[];
     uuid: string;
     turns: Turn[];
+    turn: number;
 };
 
-function parseMission(json: object): Mission {
+export function parseMission(json: object): Mission {
     const map = require(`../../../resources/map/${json['map']}`)
     const mission = {
         timeOfDay: enumValue(json['timeOfDay'], TimeOfDay), 
@@ -38,13 +38,13 @@ function parseMission(json: object): Mission {
         name: new Translatable(json['name']),
         description: new Translatable(json['description']),
         uuid: json['uuid'],
-        turns: []
+        turns: [],
+        turn: 0,
     }
     return mission;
 }
 
-
-function serializeMission(mission: Mission): object {
+export function serializeMission(mission: Mission): object {
     return {
         ...mission,
         map: serializeMap(mission.map),
@@ -58,22 +58,20 @@ function serializeMission(mission: Mission): object {
     }
 }
 
-function someCharactersAreAlive(characters: Character[]): boolean {
-    return characters.some(c => c.alive);
-}
-
-const missionComplete = (mission: Mission, game: Game): boolean => {
+export function missionComplete(mission: Mission, game: Game): boolean {
     const enemies = mission.enemies;
     const heroes = game.characters.filter(c => c.faction === Faction.Player);
     const objectivesComplete = mission.objectives.every(o => o.resolver(game));
-    return objectivesComplete || !someCharactersAreAlive(enemies) || !someCharactersAreAlive(heroes);
+    const enemiesStillAlive = enemies.some(c => alive(c));
+    const heroesStillAlive = heroes.some(c => alive(c));
+    return objectivesComplete || !enemiesStillAlive || !heroesStillAlive;
 }
 
 const sortByInitiative = (a: Character, b: Character): number => {
     return initiativeFor(a) - initiativeFor(b);
 }
 
-function nextTurn(mission: Mission, game: Game): boolean {
+export function nextTurn(mission: Mission, game: Game): boolean {
     // if there are no unsatisfied objectives, return false
     // if there are no living players, return false
     // if there are no living enemies, return false
@@ -91,7 +89,9 @@ function nextTurn(mission: Mission, game: Game): boolean {
                 return c;
             }).sort(sortByInitiative),
             actions: [],
+            member: 0,
         } as Turn);
+        mission.turn = 0;
     } else {
         const lastTurn = mission.turns[mission.turns.length - 1];
         const nextTurn = {
@@ -103,14 +103,24 @@ function nextTurn(mission: Mission, game: Game): boolean {
                 })
                 .sort(sortByInitiative),
             actions: [],
+            member: 0,
         } as Turn;
 
         mission.turns.push(nextTurn);
+        mission.turn++;
     }
     return true;
 }
 
-function spawn(mission: Mission, involved: Character[]): Mission {
+export function nextCharacterInTurn(mission: Mission, game: Game): Mission {
+    mission.turns[mission.turn].member++;
+    if(mission.turns[mission.turn].member === mission.turns[mission.turn].members.length) {
+        nextTurn(mission, game);
+    }
+    return mission;
+}
+
+export function spawn(mission: Mission, involved: Character[]): Mission {
     const heroes = involved.filter(c => c.faction === Faction.Player),
         enemies = involved.filter(c => c.faction === Faction.Enemy);
     const personFor = (faction: Faction): Character => {
@@ -141,9 +151,4 @@ export {
     Mission,
     Weather,
     TimeOfDay,
-    parseMission,
-    serializeMission,
-    spawn,
-    nextTurn,
-    missionComplete,
 };

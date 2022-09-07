@@ -1,5 +1,6 @@
 import { parseTile, serializeTile, Tile } from './tile';
 import { memoize } from '../../utility/memoize';
+import { Character } from '../characters/character';
 type Map = {
     grid: Tile[]; // y * height + x
     width: number;
@@ -38,6 +39,10 @@ function serializeMap(map: Map): object {
 function at(map: Map, x: number, y: number): Tile {
     if(y >= map.height || x >= map.width || x < 0 || y < 0) throw new OutOfBoundsError(x, y, map.width, map.height);
     return map.grid[y * map.height + x];
+}
+
+export function tileFor(map: Map, character: Character): Tile {
+    return map.grid.filter(tile => tile.occupant === character)[0];
 }
 
 const distance = memoize(function _distance(x1, y1, x2, y2): number {

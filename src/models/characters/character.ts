@@ -58,6 +58,10 @@ function isPlayer(character: Character): boolean {
     return character.faction === Faction.Player;
 }
 
+export function alive(character: Character): boolean {
+    return character.alive;
+}
+
 const CharacterType: Character = { 
     alive: false,
     class: null,

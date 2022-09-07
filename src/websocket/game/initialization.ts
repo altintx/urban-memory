@@ -10,7 +10,7 @@ import { newGameMessage } from "./events/new_game";
 import { startNextMission } from "./events/start_next_mission";
 import { tileInteraction } from "./events/tile_interaction";
 
-function listen(socket: Socket) {
+export function listen(socket: Socket) {
     function wrap(cb: (socket: Socket,message: any) => void) {
         return (json: any) => {
             try {
@@ -32,6 +32,3 @@ function listen(socket: Socket) {
     socket.on('action_execution', wrap(actionExecution));
 }
 
-export {
-    listen
-};

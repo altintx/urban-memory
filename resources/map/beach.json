@@ -35,7 +35,26 @@
             "cover": "None",
             "openable": false,
             "textures": [{ "graphic": "asphalt", "animation": [], "offset": [0, 0, 0 ]}]
+        },
+        "asphalt_striped_road": {
+            "elevation": 0,
+            "cover": "None",
+            "openable": false,
+            "textures": [{ "graphic": "asphalt", "animation": [], "offset": [0, 0, 0 ]}],
 
+            "obstacle": {
+                "name": {
+                    "en": "yellow striped road"
+                },
+                "destructable": false,
+                "destructive": false,
+                "visible": true,
+                "destroyed": false,
+                "coverBonus": 0,
+                "width": 1,
+                "height": 1,
+                "textures": [{ "graphic": "sprites/stripe", "animation": [], "offset": [0, 0, 0]}]
+            }
         },
         "cement": {
             "elevation": 0,
@@ -72,46 +91,6 @@
         "water",
         "water",
         "water",
-        {
-            "template": "water",
-            "obstacle": {
-                "name": {
-                    "en": "Boulder"
-                },
-                "destructable": false,
-                "destructive": false,
-                "visible": true,
-                "destroyed": false,
-                "coverBonus": 1,
-                "width": 2,
-                "height": 1,
-                "textures": [{ "graphic": "../boulder", "animation": [], "offset": [0, 0, 0]}]
-            }
-        },"water",
-        "water",
-        "water",
-        "water",
-        "water",
-        "water",
-        "water",
-        "water",
-        "water",
-        {
-            "template": "water",
-            "obstacle": {
-                "name": {
-                    "en": "Boulder"
-                },
-                "destructable": false,
-                "destructive": false,
-                "visible": true,
-                "destroyed": false,
-                "coverBonus": 1,
-                "width": 2,
-                "height": 1,
-                "textures": [{ "graphic": "../boulder", "animation": [], "offset": [0, 0, 0]}]
-            }
-        },
         "water",
         "water",
         "water",
@@ -128,23 +107,20 @@
         "water",
         "water",
         "water",
-        {
-            "template": "water",
-            "obstacle": {
-                "name": {
-                    "en": "Boulder"
-                },
-                "destructable": false,
-                "destructive": false,
-                "visible": true,
-                "destroyed": false,
-                "coverBonus": 1,
-                "width": 2,
-                "height": 2,
-                "textures": [{ "graphic": "../boulder", "animation": [], "offset": [0, 0, 0]}]
-            }
-        },
         "water",
+        "water",
+        "water",
+        "water",
+        "water",
+        "water",
+        "water",
+        "water",
+        "water",
+        "water",
+        "water",
+        "water",
+        "water",
+
         "sand",
         "sand",
         "sand",
@@ -187,6 +163,7 @@
         "sand",
         "sand",
         "sand",
+
         "sand",
         "sand",
         "sand",
@@ -207,6 +184,7 @@
         "grass",
         "grass",
         "grass",
+
         "grass",
         "grass",
         "grass",
@@ -227,6 +205,7 @@
         "grass",
         "grass",
         "grass",
+
         "grass",
         "grass",
         "grass",
@@ -247,6 +226,7 @@
         "grass",
         "grass",
         "grass",
+
         "grass",
         "grass",
         "grass",
@@ -267,6 +247,7 @@
         "grass",
         "grass",
         "grass",
+
         "grass",
         "grass",
         "grass",
@@ -287,6 +268,7 @@
         "grass",
         "grass",
         "grass",
+
         "grass",
         "grass",
         "grass",
@@ -306,6 +288,7 @@
         "grass",
         "grass",
         "grass",
+
         "grass",
         "grass",
         "grass",
@@ -345,6 +328,7 @@
         "grass",
         "grass",
         "grass",
+
         "grass",
         "grass",
         "grass",
@@ -369,6 +353,7 @@
         "asphalt",
         "asphalt",
         "asphalt",
+        "asphalt_striped_road",
         "asphalt",
         "asphalt",
         "asphalt",
@@ -388,6 +373,7 @@
         "asphalt",
         "asphalt",
         "asphalt",
+        "asphalt_striped_road",
         "asphalt",
         "asphalt",
         "asphalt",
@@ -407,6 +393,7 @@
         "asphalt",
         "asphalt",
         "asphalt",
+        "asphalt_striped_road",
         "asphalt",
         "asphalt",
         "asphalt",
@@ -426,10 +413,7 @@
         "asphalt",
         "asphalt",
         "asphalt",
-        "asphalt",
-        "asphalt",
-        "asphalt",
-        "asphalt",
+        "asphalt_striped_road",
         "asphalt",
         "asphalt",
         "cement",
@@ -475,6 +459,7 @@
         "cement",
         "cement",
         "cement",
+
         "cement",
         "cement",
         "cement",

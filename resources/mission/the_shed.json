@@ -50,6 +50,7 @@
     "enemies": [
         {
             "uuid": "04feea48-c815-4cec-8d26-6d56218495da",
+            "alive": true,
             "class": {
                 "name": { "en": "sniper" },
                 "ap": 2,
@@ -62,6 +63,7 @@
         },
         {
             "uuid": "be7a9651-66b9-4d1b-931b-d177dfbd1170",
+            "alive": true,
             "class": {
                 "name": { "en": "civilian" },
                 "ap": 2,

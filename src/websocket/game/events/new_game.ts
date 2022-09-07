@@ -1,5 +1,5 @@
 import { Socket } from "socket.io";
-import { newGame, transferOperatorOrEnd } from "../../../models/game";
+import { join, newGame, transferOperatorOrEnd } from "../../../models/game";
 import { setGame as setOperatorGame } from "../../../models/characters/operator";
 import { getOperator, setGame } from "../../../sessions";
 import joinedGameAnnouncement from "../announcements/joined_game";
@@ -13,11 +13,12 @@ export function newGameMessage(socket: Socket): boolean {
     if(operator.game) {
         transferOperatorOrEnd(operator.game, operator);
     }
-    const game = newGame();
+    let game = newGame();
     game.operators.push(operator); 
     setGame(game)
     setOperatorGame(operator, game);
+    game = join(game, operator);
     joinedGameAnnouncement(game, operator);
-    gameStateAnnouncement(game, operator)
+    gameStateAnnouncement(game, operator);
     return true;
 }
