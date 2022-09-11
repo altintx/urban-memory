@@ -16,7 +16,8 @@ const race: Race = {
 const klass: Class = {
     name: new Translatable({ en: "soldier" }),
     maxAp: 3,
-    ap: 2
+    ap: 2,
+    initiativeModifier: 0
 }
 const character: Character = {
     alive: true,
@@ -28,7 +29,9 @@ const character: Character = {
     race: race,
     hp: 100,
     ap: klass.ap,
-    uuid: randomUUID()
+    uuid: randomUUID(),
+    xp: 0,
+    missions: []
 };
 const character2: Character = {
     alive: true,
@@ -40,7 +43,9 @@ const character2: Character = {
     race: race,
     hp: 10,
     ap: klass.ap,
-    uuid: randomUUID()
+    uuid: randomUUID(),
+    xp: 0,
+    missions: []
 }
 const weapon: Weapon = {
     damage: 10,
@@ -82,7 +87,9 @@ const mission: Mission = {
     timeOfDay: TimeOfDay.DAYTIME,
     weather: Weather.CLEAR,
     spawnPoints: [],
-    uuid: randomUUID()
+    uuid: randomUUID(),
+    turns: [],
+    turn: 0
 }
 const game: Game = {
     campaign: null,

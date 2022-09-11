@@ -1,3 +1,4 @@
+import { cacheCharacter, loadCharacter } from "../../sessions";
 import { enumValue } from "../../utility/enum";
 import { Translatable } from "../../utility/strings";
 import { alive, Character, Faction, initiativeFor, parseCharacter, serializeCharacter } from "../characters/character";
@@ -58,9 +59,10 @@ export function serializeMission(mission: Mission): object {
     }
 }
 
-export function missionComplete(mission: Mission, game: Game): boolean {
+export async function missionComplete(mission: Mission, game: Game): Promise<boolean> {
+    const involved = await Promise.all(game.characters.map(u => loadCharacter(u)));
     const enemies = mission.enemies;
-    const heroes = game.characters.filter(c => c.faction === Faction.Player);
+    const heroes = involved.filter(c => c.faction === Faction.Player);
     const objectivesComplete = mission.objectives.every(o => o.resolver(game));
     const enemiesStillAlive = enemies.some(c => alive(c));
     const heroesStillAlive = heroes.some(c => alive(c));
@@ -71,37 +73,40 @@ const sortByInitiative = (a: Character, b: Character): number => {
     return initiativeFor(a) - initiativeFor(b);
 }
 
-export function nextTurn(mission: Mission, game: Game): boolean {
+export async function nextTurn(mission: Mission, game: Game): Promise<boolean> {
     // if there are no unsatisfied objectives, return false
     // if there are no living players, return false
     // if there are no living enemies, return false
     // compute each players initiative and sort by initiative
     // grant ap per character
 
-    if(missionComplete(mission, game)) {
+    if(await missionComplete(mission, game)) {
         return false;
     }
     
     if(mission.turns.length === 0) {
         mission.turns.push({
-            members: game.characters.map(c => {
+            members: (await Promise.all(game.characters.map(loadCharacter))).map(c => {
                 c.ap = (c.class.ap || 2);
+                cacheCharacter(c);
                 return c;
-            }).sort(sortByInitiative),
+            }).sort(sortByInitiative).map(c => c.uuid),
             actions: [],
             member: 0,
         } as Turn);
         mission.turn = 0;
     } else {
-        const lastTurn = mission.turns[mission.turns.length - 1];
+        const lastTurn = mission.turns[mission.turns.length - 1];        
+        const lastMemberInstances = await Promise.all(lastTurn.members.map(loadCharacter));
         const nextTurn = {
-            members: lastTurn.members
+            members: lastMemberInstances
                 .filter(c => c.alive)
                 .map(character => {
                     character.ap = Math.min(character.ap + (character.class.ap || 2), character.class.maxAp); 
                     return character;
                 })
-                .sort(sortByInitiative),
+                .sort(sortByInitiative)
+                .map(c => c.uuid),
             actions: [],
             member: 0,
         } as Turn;
@@ -112,10 +117,10 @@ export function nextTurn(mission: Mission, game: Game): boolean {
     return true;
 }
 
-export function nextCharacterInTurn(mission: Mission, game: Game): Mission {
+export async function nextCharacterInTurn(mission: Mission, game: Game): Promise<Mission> {
     mission.turns[mission.turn].member++;
     if(mission.turns[mission.turn].member === mission.turns[mission.turn].members.length) {
-        nextTurn(mission, game);
+        await nextTurn(mission, game);
     }
     return mission;
 }

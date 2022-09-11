@@ -1,15 +1,15 @@
 import { Action } from "../action";
-import { Character } from "../characters/character";
+import { CharacterId } from "../characters/character";
 
 export type Turn = {
-    members: Character[],
+    members: CharacterId[],
     actions: Record<string, Action>[],
     member: number;
 }
 
 export function serializeTurn(turn: Turn): object {
     return {
-        members: turn.members.map(member => member.uuid),
+        members: turn.members,
         actions: turn.actions.map(action => action.uuid),
         member: turn.member,
     }

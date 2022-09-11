@@ -6,13 +6,13 @@ import actionsForTileAnnouncement from "../announcements/actions_for_tile";
 import tileInteractionAnnouncement from "../announcements/tile_interaction";
 
 export enum Modes { Hovering, Select, Passive, Clear, Point }
-export function tileInteraction(socket: Socket, { x, y, mode, sig, }: { x: number, y: number, mode: string, sig: string }) {
+export async function tileInteraction(socket: Socket, { x, y, mode, sig, }: { x: number, y: number, mode: string, sig: string }) {
     console.log('tileInteraction', mode, sig);
     const map = {
         'hover': Modes.Hovering,
         'select': Modes.Select,
     }
-    const operator = getOperator(socket);
+    const operator = await getOperator(socket);
     const game = operator.game;
     const tile = at(game.activeMission.map, x, y);
     game.operators.forEach(o => {

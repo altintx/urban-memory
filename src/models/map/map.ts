@@ -42,7 +42,9 @@ function at(map: Map, x: number, y: number): Tile {
 }
 
 export function tileFor(map: Map, character: Character): Tile {
-    return map.grid.filter(tile => tile.occupant === character)[0];
+    const allTiles = map.grid;
+    const matchingTiles = allTiles.filter(tile => tile.occupant?.uuid === character.uuid);
+    return matchingTiles[0];
 }
 
 const distance = memoize(function _distance(x1, y1, x2, y2): number {

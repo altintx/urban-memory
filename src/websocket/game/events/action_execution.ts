@@ -11,10 +11,10 @@ import { loadMapAnnouncement } from "../announcements/load_map";
 import { memberTurnAnnouncement } from "../announcements/member_turn";
 import missionInfoAnnouncement from "../announcements/mission_info";
 
-export function actionExecution(socket: Socket, { actionId, x1, y1, x2, y2, sig }: { actionId: string, x1: number, y1: number, x2: number, y2: number, sig: string }) {
+export async function actionExecution(socket: Socket, { actionId, x1, y1, x2, y2, sig }: { actionId: string, x1: number, y1: number, x2: number, y2: number, sig: string }) {
     console.log('actionIntention', actionId, sig);
     const action = all.find(action => action.uuid === actionId);
-    const operator = getOperator(socket);
+    const operator = await getOperator(socket);
     const game = operator.game;
     const mission = game.activeMission;
     const source = at(mission.map, x1, y1);

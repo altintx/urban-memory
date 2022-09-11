@@ -6,11 +6,14 @@ import {Class, parseClass, serializeClass} from "./class";
 import {parseRace, Race, serializeRace} from "./race";
 import { Base } from "./traits/base";
 import { randomUUID } from "crypto";
+import { loadCharacter } from "../../sessions";
 
 enum Faction { Player, Enemy }
 
+export type CharacterId = string;
+
 type Character = {
-    uuid: string;
+    uuid: CharacterId;
     operator: Operator;
     class: Class;
     race: Race;
@@ -26,7 +29,7 @@ type Character = {
 
 function parseCharacter(json: any): Character {
     return {
-        operator: null,
+        operator: json['operator'],
         class: parseClass(json['class']),
         race: parseRace(json['race']),
         faction: enumValue(json['faction'], Faction),
@@ -58,8 +61,13 @@ function isPlayer(character: Character): boolean {
     return character.faction === Faction.Player;
 }
 
-export function alive(character: Character): boolean {
-    return character.alive;
+export async function alive(character: Character | CharacterId): Promise<boolean> {
+    if (typeof character === "object") {
+        return character.alive;
+    } else {
+        const c = await loadCharacter(character);
+        return c.alive;
+    }
 }
 
 const CharacterType: Character = { 

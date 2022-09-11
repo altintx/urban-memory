@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import leftGameAnnouncement from '../websocket/game/announcements/left_game';
-import { endGame, setGame } from '../sessions';
-import { Character, Faction, parseCharacter, serializeCharacter } from './characters/character';
+import { cacheCharacter, endGame, loadCharacter, loadOperator, setGame } from '../sessions';
+import { Character, CharacterId, Faction, parseCharacter, serializeCharacter } from './characters/character';
 import { Operator } from './characters/operator';
 import { Campaign, parseCampaign } from './campaign';
 import { Mission } from './missions/mission';
@@ -9,15 +9,16 @@ import { parseRace, Race, serializeRace } from './characters/race';
 import { randomName } from './name';
 import { randomValue } from '../utility/array';
 import { Class, parseClass, serializeClass } from './characters/class';
+import { enumValue } from '../utility/enum';
 
-enum Visibility { Public, Private };
-enum Difficulty {
+export enum Visibility { Public, Private };
+export enum Difficulty {
     Easy, Hard
 };
 
-type Game = {
-    characters: Character[];
-    workingSquad: Character[];
+export type Game = {
+    characters: CharacterId[];
+    workingSquad: CharacterId[];
     campaign: Campaign,
     difficulty: Difficulty;
     gameId: string;
@@ -26,17 +27,17 @@ type Game = {
     activeMission?: Mission;
 }
 
-function addCharacter(character: Character, game: Game): Game {
-    return Object.assign({}, game, game.characters.concat(character));
+export function addCharacter(character: Character, game: Game): Game {
+    return Object.assign({}, game, game.characters.concat(character.uuid));
 }
 
-function newGame(): Game {
+export function newGame(operator: Operator): Game {
     const characterFactory = (name: string, className: Class, race: Race, faction: Faction): Character => {
         const classJson = serializeClass(className), raceJson = serializeRace(race);
         const character = parseCharacter({
             name: name,
             uuid: randomUUID(),
-            operator: null, 
+            operator: operator, 
             class: classJson,
             race: raceJson,
             faction: faction,
@@ -46,10 +47,11 @@ function newGame(): Game {
             ap: 1,
  
         });
+        cacheCharacter(character);
         return character;
     }
     const HUMAN = parseRace({ name: { en: "Human" } })
-    const characters = [];
+    const characters: Character[] = [];
     const genders = ['male', 'female'];
     const classes = ['hunter'].map(name => parseClass({
         name: { en: name },
@@ -67,17 +69,17 @@ function newGame(): Game {
         );
     }
     return {
-        characters: characters,
+        characters: characters.map(c => c.uuid),
         campaign: parseCampaign(require('../../resources/campaign.json')),
         difficulty: Difficulty.Easy,
-        workingSquad: characters.slice(0,4),
+        workingSquad: characters.slice(0,4).map(c => c.uuid),
         gameId: randomUUID(),
-        operators: [],
+        operators: [operator],
         visibility: Visibility.Public
     }
 }
 
-function transferOperatorOrEnd(game:Game, departingOperator: Operator): Game | null {
+export function transferOperatorOrEnd(game:Game, departingOperator: Operator): Game | null {
     if(game.operators.length > 1) {
         const newGame = Object.assign({}, game, { operators: game.operators.filter(o => o !== departingOperator) });
         setGame(newGame);
@@ -89,31 +91,42 @@ function transferOperatorOrEnd(game:Game, departingOperator: Operator): Game | n
     }
 }
 
-function join(game: Game, operator: Operator): Game {
-    const characters = game.characters.map(c => c.operator === null ? Object.assign({}, c, { operator: operator }) : c);
-    const newGame = Object.assign({}, game, { operators: game.operators.concat(operator), characters: characters });
+export async function join(game: Game, operator: Operator): Promise<Game> {
+    const characters = await Promise.all(game.characters.map(uuid => loadCharacter(uuid)));
+    characters.forEach(c => {
+        if(c.operator === null) {
+            const assigned = Object.assign({}, c, { operator: operator });
+            cacheCharacter(assigned);
+            return assigned;
+        } else {
+            return c;
+        }
+    });
+    const newGame = Object.assign({}, game, { operators: game.operators.concat(operator) });
     setGame(newGame);
     return newGame;
 }
 
-function serializeGame(game: Game): object {
+export function serializeGame(game: Game): object {
     return {
         missionUuid: game.activeMission?.uuid,
-        characters: game.characters.map(c => c.uuid),
+        characters: game.characters,
         uuid: game.gameId,
-        workingSquad: game.workingSquad.map(c => c.uuid),
+        workingSquad: game.workingSquad,
         difficulty: game.difficulty,
-        visibility: game.visibility
+        visibility: game.visibility,
+        campaign: game.campaign.uuid,
     }
 }
 
-export {
-    Game,
-    addCharacter,
-    newGame,
-    transferOperatorOrEnd,
-    join,
-    Visibility,
-    Difficulty,
-    serializeGame
-};
+export async function parseGame(json: any): Promise<Game> {
+    return {
+        characters: json.characters.map(c => loadCharacter(c)),
+        workingSquad: json.workingSquad.map(c => loadCharacter(c)),
+        campaign: parseCampaign(json['campaign']),
+        difficulty: enumValue(json['difficulty'], Difficulty),
+        gameId: json.uuid,
+        operators: await Promise.all(json.operators.map(o => loadOperator(o))),
+        visibility: enumValue(json['visibility'], Visibility),
+    }
+}

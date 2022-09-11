@@ -71,14 +71,16 @@ const mission: Mission = {
         resolver: (game) => game.activeMission.enemies.every(c => !c.alive)
     }],
     spawnPoints: [
-        { x: 10, y: 0, faction: Faction.Player}, 
+        { x: 10, y: 0, faction: Faction.Player },
         { x: 10, y: 19, faction: Faction.Enemy }
     ],
     uuid: randomUUID(),
     turns: [],
+    turn: 0,
 }
 const campaign: Campaign = {
-    missions: [mission]
+    missions: [mission],
+    uuid: ''
 }
 const game: Game = {
     campaign: campaign,
