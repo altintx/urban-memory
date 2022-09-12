@@ -1,16 +1,20 @@
 import { randomUUID } from "crypto";
+import { InteractionMode } from "../../../models/action";
+import ACTIONS, { NAMED_ACTIONS } from "../../../models/actions";
 import { serializeCharacter } from "../../../models/characters/character";
 import { serializeOperator } from "../../../models/characters/operator";
 import { Game } from "../../../models/game";
-import { tileFor } from "../../../models/map/map";
+import { coordinatesForTile, tileFor } from "../../../models/map/map";
 import { Turn } from "../../../models/missions/turn";
-import { loadCharacter } from "../../../sessions";
+import { loadCharacter, operatorForCharacter } from "../../../sessions";
+import { actionIntention } from "../events/action_intention";
+import actionsForTileAnnouncement from "./actions_for_tile";
 import tileInteractionAnnouncement from "./tile_interaction";
 
 export async function memberTurnAnnouncement(game: Game, turn: Turn) {
     const characterUuid = turn.members[turn.member];
     const character = await loadCharacter(characterUuid);
-    const memberOperator = character.operator;
+    const memberOperator = await operatorForCharacter(character);
     const memberTile = tileFor(game.activeMission.map, character);
 
     if(!memberOperator) {
@@ -31,5 +35,9 @@ export async function memberTurnAnnouncement(game: Game, turn: Turn) {
         operator.socket.emit("member_turn", { "member": serializeCharacter(character), "operator": serializeOperator(memberOperator) });
         tileInteractionAnnouncement(operator, memberTile, memberOperator, "select", randomUUID());
     }
+
+    actionsForTileAnnouncement(memberOperator, memberTile, InteractionMode.Select, null);
+    const [x, y] = coordinatesForTile(game.activeMission.map, memberTile);
+    actionIntention(memberOperator.socket, { actionId: ACTIONS[NAMED_ACTIONS.MOVE].uuid, x, y, sig: null });
     return true;
 }

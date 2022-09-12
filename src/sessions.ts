@@ -105,3 +105,11 @@ export function getGames(scope: Visibility | null): Game[] {
 export async function getGameById(gameId: string): Promise<Game> {
     return gamesMap[gameId];
 }
+
+export async function operatorForCharacter(character: Character): Promise<Operator> {
+    const operator = Object.values(sessions.operators).find(o => o.operatorId === character.operator.operatorId && o.socket);
+    if (!operator) {
+        throw new Error("Operator not found for character");
+    }
+    return operator;
+}
