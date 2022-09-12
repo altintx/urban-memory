@@ -27,7 +27,6 @@ export async function memberTurnAnnouncement(game: Game, turn: Turn) {
         return false;
     }
 
-    debugger;
     for (let operator of game.operators) {
         operator.socket.emit("member_turn", { "member": serializeCharacter(character), "operator": serializeOperator(memberOperator) });
         tileInteractionAnnouncement(operator, memberTile, memberOperator, "select", randomUUID());

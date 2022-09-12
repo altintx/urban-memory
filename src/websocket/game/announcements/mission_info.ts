@@ -8,10 +8,10 @@ import { last } from "../../../utility/array";
 
 export default async function missionInfoAnnouncement(mission: Mission, operator: Operator) {
     const characters = (await Promise.all(operator.game.workingSquad.map(uuid => loadCharacter(uuid)))).concat(mission.enemies)
-    console.log('missionInfoAnnouncement');
     operator.socket.emit("mission_info", serializeMission(mission));
     operator.socket.emit("characters_info", characters.map(c => serializeCharacter(c)));
     const turn = last(mission.turns);
-    if(turn)
+    if(turn) {
         operator.socket.emit("turn_state", serializeTurn(turn));
+    }
 }

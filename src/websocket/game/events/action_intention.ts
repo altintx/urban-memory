@@ -6,7 +6,6 @@ import { getOperator } from "../../../sessions";
 import tileInteractionAnnouncement from "../announcements/tile_interaction";
 
 export async function actionIntention(socket: Socket, { actionId, x, y, sig }: { actionId: string, x: number, y: number, sig: string }) {
-    console.log('actionIntention', actionId, sig);
     const action = all.find(action => action.uuid === actionId);
     const operator = await getOperator(socket);
     const game = operator.game;

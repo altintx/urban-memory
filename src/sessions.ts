@@ -15,9 +15,13 @@ let sessions = {
     games: gamesMap
 };
 export async function registerOperator(operator: Operator): Promise<void> {
-    const key = `operator:${operator.socket.id}`;
+    console.log("Registering operator", operator);
+    const key = `operator:socket:${operator.socket.id}`;
+    const key2 = `operator:${operator.operatorId}`;
+    const payload = JSON.stringify(serializeOperator(operator));
     await redisReady;
-    client.set(key, JSON.stringify(serializeOperator(operator)));
+    await client.set(key, payload);
+    await client.set(key2, payload);
     sessions.operators[operator.socket.id] = operator;
 }
 
@@ -25,7 +29,11 @@ export async function loadOperator(uuid:string): Promise<Operator | null> {
     const key = `operator:${uuid}`;
     await redisReady;
     const operator = await client.get(key);
-    return operator ? JSON.parse(operator) : null;
+    if (operator) {
+        return JSON.parse(operator);
+    } else {
+        return null;
+    }
 }
 
 export function getOperator(socket: Socket): Promise<Operator> {
@@ -62,6 +70,7 @@ export async function endGame(game:Game): Promise<boolean> {
 }
 
 export async function setGame(game: Game): Promise<void> {
+    console.log("setGame");
     const key = `game:${game.gameId}`;
     await redisReady;
     await client.set(key, JSON.stringify(serializeGame(game)));
@@ -69,16 +78,20 @@ export async function setGame(game: Game): Promise<void> {
 }
 
 export async function cacheCharacter(character: Character): Promise<void> {
+    console.log("cacheCharacter", character);
     const key = `character:${character.uuid}`;
     await redisReady;
-    client.set(key, JSON.stringify(serializeCharacter(character)));
+    const o = serializeCharacter(character);
+    client.set(key, JSON.stringify(o));
 }
 
 export async function loadCharacter(uuid: string): Promise<Character> {
     const key = `character:${uuid}`;
+    console.log(`loadCharacter ${key}`);
     await redisReady;
     const json = await client.get(key);
-    return parseCharacter(JSON.parse(json));
+    const character = await parseCharacter(JSON.parse(json));
+    return character;
 }
 
 export function getGames(scope: Visibility | null): Game[] {

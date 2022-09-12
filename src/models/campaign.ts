@@ -4,12 +4,12 @@ type Campaign = {
     missions: Mission[],
     uuid: string,
 }
-const parseCampaign = (json: object): Campaign => {
+const parseCampaign = async (json: object): Promise<Campaign> => {
     const campaign: Campaign = {
-        missions: json['missions'].map(json => {
+        missions: await Promise.all(json['missions'].map(json => {
             const mission = require(`../../resources/mission/${json.mission}`);
             return parseMission(mission);
-        }),
+        })),
         uuid: json['uuid'],
     }
     return campaign;

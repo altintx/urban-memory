@@ -26,7 +26,7 @@ type Mission = {
     turn: number;
 };
 
-export function parseMission(json: object): Mission {
+export async function parseMission(json: object): Promise<Mission> {
     const map = require(`../../../resources/map/${json['map']}`)
     const mission = {
         timeOfDay: enumValue(json['timeOfDay'], TimeOfDay), 
@@ -34,7 +34,7 @@ export function parseMission(json: object): Mission {
         map: parseMap(map),
         spawnPoints: json['spawnPoints'].map(json => parseSpawnPoint(json)),
         objectives: json['objectives'].map(json => parseObjective(json)),
-        enemies: json['enemies'].map(json => parseCharacter(json)),
+        enemies: await Promise.all(json['enemies'].map(json => parseCharacter(json))),
         obstacles: json['obstacles'].map(json => parseObstacle(json)),
         name: new Translatable(json['name']),
         description: new Translatable(json['description']),
@@ -86,7 +86,7 @@ export async function nextTurn(mission: Mission, game: Game): Promise<boolean> {
     
     if(mission.turns.length === 0) {
         mission.turns.push({
-            members: (await Promise.all(game.characters.map(loadCharacter))).map(c => {
+            members: (await Promise.all(game.workingSquad.map(loadCharacter))).map(c => {
                 c.ap = (c.class.ap || 2);
                 cacheCharacter(c);
                 return c;

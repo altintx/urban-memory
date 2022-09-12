@@ -6,7 +6,7 @@ import {Class, parseClass, serializeClass} from "./class";
 import {parseRace, Race, serializeRace} from "./race";
 import { Base } from "./traits/base";
 import { randomUUID } from "crypto";
-import { loadCharacter } from "../../sessions";
+import { loadCharacter, loadOperator } from "../../sessions";
 
 enum Faction { Player, Enemy }
 
@@ -27,9 +27,10 @@ type Character = {
     missions: string[];
 }
 
-function parseCharacter(json: any): Character {
+async function parseCharacter(json: any): Promise<Character> {
+    console.log("parseCharacter");
     return {
-        operator: json['operator'],
+        operator: await loadOperator(json.operator),
         class: parseClass(json['class']),
         race: parseRace(json['race']),
         faction: enumValue(json['faction'], Faction),
@@ -45,6 +46,12 @@ function parseCharacter(json: any): Character {
 }
 
 function serializeCharacter(character: Character): object {
+    if(character.operator?.operatorId) {
+        console.log("serializeCharacter", character.operator.operatorId);
+    } else {
+        console.log("serializeCharacter (no operator)");
+    }
+
     return {
         ...character,
         operator: character.operator?.operatorId,
@@ -87,7 +94,6 @@ const CharacterType: Character = {
 
 function applyDamage(character: Character, damage: DamageInfliction) {
     const critMultiplier = damage.critical? 1.5: 1;
-    // console.log(`hit! ${damage.baseDamage} HP ${(damage.critical && "Crit!") || ""}`);
     character.hp -= damage.baseDamage * critMultiplier;
     character.alive = character.hp > 0;
     return character;

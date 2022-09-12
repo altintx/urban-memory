@@ -7,7 +7,6 @@ import gameNotFoundAnnouncement from "../announcements/game_not_found";
 import notLoggedInAnnouncement from "../announcements/not_logged_in";
 
 export async function joinGameMessage(socket: Socket, { gameId }: { gameId: string }) {
-    console.log('joinGameMessage', gameId);
     const operator = await getOperator(socket)
     if(!operator) notLoggedInAnnouncement(socket);
     let game = await getGameById(gameId);

@@ -31,13 +31,13 @@ export function addCharacter(character: Character, game: Game): Game {
     return Object.assign({}, game, game.characters.concat(character.uuid));
 }
 
-export function newGame(operator: Operator): Game {
-    const characterFactory = (name: string, className: Class, race: Race, faction: Faction): Character => {
+export async function newGame(operator: Operator): Promise<Game> {
+    const characterFactory = async (name: string, className: Class, race: Race, faction: Faction): Promise<Character> => {
         const classJson = serializeClass(className), raceJson = serializeRace(race);
-        const character = parseCharacter({
+        const character = await parseCharacter({
             name: name,
             uuid: randomUUID(),
-            operator: operator, 
+            operator: operator.operatorId, 
             class: classJson,
             race: raceJson,
             faction: faction,
@@ -47,7 +47,7 @@ export function newGame(operator: Operator): Game {
             ap: 1,
  
         });
-        cacheCharacter(character);
+        await cacheCharacter(character);
         return character;
     }
     const HUMAN = parseRace({ name: { en: "Human" } })
@@ -60,7 +60,7 @@ export function newGame(operator: Operator): Game {
     }));
     for(let i = 0; i < 1; i++) {
         characters.push(
-            characterFactory(
+            await characterFactory(
                 randomName(randomValue(genders)),
                 randomValue(classes),
                 HUMAN,
@@ -70,7 +70,7 @@ export function newGame(operator: Operator): Game {
     }
     return {
         characters: characters.map(c => c.uuid),
-        campaign: parseCampaign(require('../../resources/campaign.json')),
+        campaign: await parseCampaign(require('../../resources/campaign.json')),
         difficulty: Difficulty.Easy,
         workingSquad: characters.slice(0,4).map(c => c.uuid),
         gameId: randomUUID(),
@@ -123,7 +123,7 @@ export async function parseGame(json: any): Promise<Game> {
     return {
         characters: json.characters.map(c => loadCharacter(c)),
         workingSquad: json.workingSquad.map(c => loadCharacter(c)),
-        campaign: parseCampaign(json['campaign']),
+        campaign: await parseCampaign(json['campaign']),
         difficulty: enumValue(json['difficulty'], Difficulty),
         gameId: json.uuid,
         operators: await Promise.all(json.operators.map(o => loadOperator(o))),

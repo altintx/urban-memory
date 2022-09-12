@@ -1,7 +1,7 @@
 import { Socket } from "socket.io";
+import { readFileSync } from "fs";
 
 export function loadMapMessage(socket: Socket, { map }: { map: string }) {
-    console.log('loadMapMessage');
-    const mapJson = require('../../../../resources/map/' + map + '.json');
-    socket.emit("load_map", mapJson)
+    const mapJson = JSON.parse(readFileSync(`./maps/${map}.json`, "utf8"));
+    socket.emit("load_map", mapJson);
 }

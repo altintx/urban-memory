@@ -7,7 +7,6 @@ import tileInteractionAnnouncement from "../announcements/tile_interaction";
 
 export enum Modes { Hovering, Select, Passive, Clear, Point }
 export async function tileInteraction(socket: Socket, { x, y, mode, sig, }: { x: number, y: number, mode: string, sig: string }) {
-    console.log('tileInteraction', mode, sig);
     const map = {
         'hover': Modes.Hovering,
         'select': Modes.Select,

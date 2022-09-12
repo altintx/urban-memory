@@ -5,7 +5,6 @@ import { memberTurnAnnouncement } from "../announcements/member_turn";
 import missionInfoAnnouncement from "../announcements/mission_info";
 
 export async function startNextMission(socket: Socket, { missionIndex = 0 }: { missionIndex: number }) {
-    console.log('startNextMission', missionIndex);
     const operator = await getOperator(socket);
     let game = operator.game;
     const mission = game.activeMission = operator.game.campaign.missions[missionIndex];
@@ -16,9 +15,9 @@ export async function startNextMission(socket: Socket, { missionIndex = 0 }: { m
     for(let o of game.operators) {
         missionInfoAnnouncement(game.activeMission, o)
     };
-    if(!memberTurnAnnouncement(game, mission.turns[mission.turn])) {
+    if(!(await memberTurnAnnouncement(game, mission.turns[mission.turn]))) {
         await nextCharacterInTurn(mission, game);
-        if(!memberTurnAnnouncement(game, mission.turns[mission.turn])) {
+        if(!(await memberTurnAnnouncement(game, mission.turns[mission.turn]))) {
             throw new Error("Aborting infinite loop");
         }
     }
