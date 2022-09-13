@@ -9,6 +9,7 @@ import { Turn } from "../../../models/missions/turn";
 import { loadCharacter, operatorForCharacter } from "../../../sessions";
 import { actionIntention } from "../events/action_intention";
 import actionsForTileAnnouncement from "./actions_for_tile";
+import styleTileAnnouncement from "./style_tile";
 import tileInteractionAnnouncement from "./tile_interaction";
 
 export async function memberTurnAnnouncement(game: Game, turn: Turn) {
@@ -33,7 +34,7 @@ export async function memberTurnAnnouncement(game: Game, turn: Turn) {
 
     for (let operator of game.operators) {
         operator.socket.emit("member_turn", { "member": serializeCharacter(character), "operator": serializeOperator(memberOperator) });
-        tileInteractionAnnouncement(operator, memberTile, memberOperator, "select", randomUUID());
+        tileInteractionAnnouncement(operator, memberTile, memberOperator, "select", null);
     }
 
     actionsForTileAnnouncement(memberOperator, memberTile, InteractionMode.Select, null);

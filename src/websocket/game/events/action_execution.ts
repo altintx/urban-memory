@@ -1,18 +1,15 @@
 import { Socket } from "socket.io";
-import all from '../../../models/actions';
+import { actionForId } from '../../../models/actions';
 import { Character } from "../../../models/characters/character";
 import { Operator } from "../../../models/characters/operator";
 import { at } from "../../../models/map/map";
-import { Tile } from "../../../models/map/tile";
-import { nextCharacterInTurn, nextTurn } from "../../../models/missions/mission";
+import { nextCharacterInTurn } from "../../../models/missions/mission";
 import { getOperator, setGame } from "../../../sessions";
-import gameStateAnnouncement from "../announcements/game_state";
-import { loadMapAnnouncement } from "../announcements/load_map";
 import { memberTurnAnnouncement } from "../announcements/member_turn";
 import missionInfoAnnouncement from "../announcements/mission_info";
 
 export async function actionExecution(socket: Socket, { actionId, x1, y1, x2, y2, sig }: { actionId: string, x1: number, y1: number, x2: number, y2: number, sig: string }) {
-    const action = all.find(action => action.uuid === actionId);
+    const action = actionForId(actionId);
     const operator = await getOperator(socket);
     const game = operator.game;
     const mission = game.activeMission;
