@@ -14,6 +14,7 @@ export async function tileInteraction(socket: Socket, { x, y, mode, sig, }: { x:
         'select': Modes.Select,
     }
     const operator = await getOperator(socket);
+    
     const game = operator.game;
     const tile = at(game.activeMission.map, x, y);
     game.operators.forEach(o => {

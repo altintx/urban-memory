@@ -1,5 +1,5 @@
 import { Socket } from "socket.io";
-import { join, newGame, transferOperatorOrEnd } from "../../../models/game";
+import { join, newGame, transferOperatorOrEnd, Visibility } from "../../../models/game";
 import { setGame as setOperatorGame } from "../../../models/characters/operator";
 import { getOperator, setGame } from "../../../sessions";
 import joinedGameAnnouncement from "../announcements/joined_game";
@@ -13,6 +13,7 @@ export async function newGameMessage(socket: Socket): Promise<boolean> {
         transferOperatorOrEnd(operator.game, operator);
     }
     let game = await newGame(operator);
+    game.visibility = Visibility.Public;
     await setGame(game)
     game = await join(game, operator);
     setOperatorGame(operator, game);

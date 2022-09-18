@@ -21,6 +21,7 @@ export type Action = {
     execute?: (source: Tile, destination: Tile, action: Action, mission: Mission, game: Game) => Game;
     hasSecondarySelection: boolean;
     count?: number;
+    cursor?: 'auto' | 'pointer' | 'grab' | 'grabbing' | 'crosshair' | 'none';
 }
 
 export function serializeAction(action: Action): object {
@@ -31,6 +32,7 @@ export function serializeAction(action: Action): object {
         xp: action.xp,
         uuid: action.uuid,
         hasSecondarySelection: action.hasSecondarySelection,
-        count: action.count
+        count: action.count,
+        cursor: action.cursor,
     }
 }

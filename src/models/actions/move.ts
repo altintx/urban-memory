@@ -10,6 +10,7 @@ const MOVE: Action = {
         en: "Move"
     }),
     ap: 1,
+    cursor: 'grabbing',
     xp: 0,
     uuid: "a1e8f8f0-f8f0-11e9-b210-d663bd873d93",
     cooldown: 0,
@@ -35,7 +36,7 @@ const MOVE: Action = {
         const [x2, y2] = coordinatesForTile(mission.map, destination);
         const distance = Math.floor(Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
         const movement = Math.floor(distance / action.ap);
-        if(isA(source.occupant, CharacterType)) {
+        if(isA(source.occupant, CharacterType) && movement <= (source.occupant as Character).ap) {
             (source.occupant as Character).ap -= movement;
             destination.occupant = source.occupant;
             source.occupant = null;
