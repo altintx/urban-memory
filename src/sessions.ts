@@ -15,7 +15,6 @@ let sessions = {
     games: gamesMap
 };
 export async function registerOperator(operator: Operator): Promise<void> {
-    console.log("Registering operator", operator);
     const key = `operator:socket:${operator.socket.id}`;
     const key2 = `operator:${operator.operatorId}`;
     const payload = JSON.stringify(serializeOperator(operator));

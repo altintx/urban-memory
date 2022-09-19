@@ -31,7 +31,7 @@ export function addCharacter(character: Character, game: Game): Game {
     return Object.assign({}, game, game.characters.concat(character.uuid));
 }
 
-export async function newGame(operator: Operator): Promise<Game> {
+export async function newGame(operator: Operator, campaign: Campaign): Promise<Game> {
     const characterFactory = async (name: string, className: Class, race: Race, faction: Faction): Promise<Character> => {
         const classJson = serializeClass(className), raceJson = serializeRace(race);
         const character = await parseCharacter({
@@ -70,7 +70,7 @@ export async function newGame(operator: Operator): Promise<Game> {
     }
     return {
         characters: characters.map(c => c.uuid),
-        campaign: await parseCampaign(require('../../resources/campaign.json')),
+        campaign: campaign,
         difficulty: Difficulty.Easy,
         workingSquad: characters.slice(0,4).map(c => c.uuid),
         gameId: randomUUID(),

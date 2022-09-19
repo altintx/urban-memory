@@ -11,6 +11,7 @@
             }        
         }
     ],
+    "alias": "story",
     "name": {
         "en": "Campaign Mode"
     },

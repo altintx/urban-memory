@@ -3,6 +3,7 @@ import { actionExecution } from "./events/action_execution";
 import { actionIntention } from "./events/action_intention";
 import { helloMessage } from "./events/hello";
 import { joinGameMessage } from "./events/join_game";
+import { listCampaignsMessage } from "./events/list_campaigns";
 import { listGamesMessage } from "./events/list_games";
 import { loadMapMessage } from "./events/load_map";
 import { loginMessage } from "./events/login";
@@ -30,5 +31,6 @@ export function listen(socket: Socket) {
     socket.on('tile_interaction', wrap(tileInteraction));
     socket.on('action_intention', wrap(actionIntention));
     socket.on('action_execution', wrap(actionExecution));
+    socket.on('list_campaigns', wrap(listCampaignsMessage));
 }
 

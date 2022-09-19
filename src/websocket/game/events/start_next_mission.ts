@@ -18,7 +18,7 @@ export async function startNextMission(socket: Socket, { missionIndex = 0 }: { m
     if(!(await memberTurnAnnouncement(game, mission.turns[mission.turn]))) {
         await nextCharacterInTurn(mission, game);
         if(!(await memberTurnAnnouncement(game, mission.turns[mission.turn]))) {
-            throw new Error("Aborting infinite loop");
+            // throw new Error("Aborting infinite loop");
         }
     }
 }
