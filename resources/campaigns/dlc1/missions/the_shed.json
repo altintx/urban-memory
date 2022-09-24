@@ -1,0 +1,78 @@
+{
+    "theme": "city",
+    "timeOfDay": "daytime",
+    "weather": "rain",
+    "name": {
+        "en": "The Shed"
+    },
+    "description": {
+        "en": "Mind the broom"
+    },
+    "maxCharacters": 2,
+    "map": "beach.json",
+    "waves": 1,
+    "spawnPoints": [
+        {
+            "faction": "Player",
+            "wave": 0,
+            "index": 0,
+            "x": 0,
+            "y": 1
+        },
+        {
+            "faction": "Player",
+            "wave": 0,
+            "index": 1,
+            "x": 0,
+            "y": 3
+        },
+        {
+            "faction": "Enemy",
+            "uuid": "04feea48-c815-4cec-8d26-6d56218495da",
+            "wave": 0,
+            "x": 6,
+            "y": 4
+        }
+    ],
+    "obstacles": [],
+    "objectives": [
+        {
+            "type": "everyone_survives",
+            "wave": 0,
+            "short": {
+                "en": "Everyone survives."
+            },
+            "long": {
+                "en": "That means everybody."
+            }
+        }
+    ],
+    "enemies": [
+        {
+            "uuid": "04feea48-c815-4cec-8d26-6d56218495da",
+            "alive": true,
+            "class": {
+                "name": { "en": "sniper" },
+                "ap": 2,
+                "maxAp": 2
+            },
+            "race": {
+                "name": { "en": "human" }
+            },
+            "name": "Max"
+        },
+        {
+            "uuid": "be7a9651-66b9-4d1b-931b-d177dfbd1170",
+            "alive": true,
+            "class": {
+                "name": { "en": "civilian" },
+                "ap": 2,
+                "maxAp": 2
+            },
+            "race": {
+                "name": { "en": "human" }
+            },
+            "name": "Kofi"
+        }
+    ]
+}

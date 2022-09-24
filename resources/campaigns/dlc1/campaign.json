@@ -1,0 +1,21 @@
+{
+    "uuid": "a23787e3-31b1-4a65-888b-2ea09b99359a",
+    "missions": [
+        {
+            "mission": "the_shed",
+            "name": {
+                "en": "Under the Sea"
+            },
+            "description": {
+                "en": "Beward the shells."
+            }        
+        }
+    ],
+    "alias": "dlc1",
+    "name": {
+        "en": "The Hunt For Reed November"
+    },
+    "description": {
+        "en": "DLC oh yeah"
+    }
+}
