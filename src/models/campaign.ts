@@ -7,12 +7,13 @@ export type Campaign = {
     uuid: string,
     name: Translatable;
     description: Translatable;
+    alias: string;
 }
 export async function getCampaigns(): Promise<Campaign[]> {
-    return await Promise.all(readdirSync('resources/campaigns').map((alias): Promise<Campaign> => {
+    return (await Promise.all(readdirSync('resources/campaigns').map((alias): Promise<Campaign> => {
         const f = require(`../../resources/campaigns/${alias}/campaign.json`);
         return parseCampaign(f);
-    }));
+    }))).sort((a, b) => a.alias === 'story'? -1: b.alias === 'story'? 1: 0)
 }
 export async function parseCampaign (json: object): Promise<Campaign> {
     const alias = json['alias'];
@@ -24,6 +25,7 @@ export async function parseCampaign (json: object): Promise<Campaign> {
         name: new Translatable(json['name']),
         description: new Translatable(json['description']),
         uuid: json['uuid'],
+        alias
     }
     return campaign;
 }

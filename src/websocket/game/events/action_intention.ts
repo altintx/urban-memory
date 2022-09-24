@@ -1,4 +1,5 @@
 import { Socket } from "socket.io";
+import { serializeAction } from "../../../models/action";
 import { actionForId } from '../../../models/actions';
 import { at } from "../../../models/map/map";
 import { getOperator } from "../../../sessions";
@@ -22,4 +23,5 @@ export async function actionIntention(socket: Socket, { actionId, x, y, sig }: {
             tileInteractionAnnouncement(sendTo, targets, operator, 'possible-destination', sig);
         });
     }
+    socket.emit('action_intention', serializeAction(action));
 }
