@@ -35,29 +35,8 @@ export async function loadOperator(uuid:string): Promise<Operator | null> {
     }
 }
 
-export function getOperator(socket: Socket): Promise<Operator> {
-    console.warn(
-        "getOperator is deprecated, should look up by operator uuid instead of socket id"
-    )
-    // return process.env["REDIS_URL"] ? getOperatorInRedis(socket) : getOperatorInMemory(socket);
-    return getOperatorInMemory(socket);
-}
-async function getOperatorInMemory(socket: Socket): Promise<Operator> {
-    return sessions.operators[socket.id];
-}
-async function getOperatorInRedis(socket: Socket): Promise<Operator> {
-    throw new Error("Not implemented");
-}
-// this should go to redis
-async function gameForOperatorInRedis(socket: Socket): Promise<Game | null> {
-    throw new Error("Not implemented");
-}
-async function gameForOperatorInMemory(socket: Socket): Promise<Game | null> {
-    return sessions.operators[socket.id].game;
-}
-export function gameForOperator(socket: Socket): Game | null {
-    const operator = sessions.operators[socket.id];
-    return operator.game;    
+export async function getOperatorById(socketId: string): Promise<Operator> {
+    return sessions.operators[socketId];
 }
 
 export async function endGame(game:Game): Promise<boolean> {

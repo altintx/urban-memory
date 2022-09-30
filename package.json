@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "serve": "ts-node index.ts",
+    "servedev": "ts-node-dev --inspect=0.0.0.0:9229 --exit-child --respawn index.ts",
     "build": "node_modules/typescript/bin/tsc index.ts",
     "cli": "ts-node src/cli/index.ts"
   },

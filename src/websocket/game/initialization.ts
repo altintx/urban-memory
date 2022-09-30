@@ -1,4 +1,5 @@
 import { Socket } from "socket.io";
+import { Operator } from "../../models/characters/operator";
 import { actionExecution } from "./events/action_execution";
 import { actionIntention } from "./events/action_intention";
 import { helloMessage } from "./events/hello";
@@ -10,12 +11,13 @@ import { loginMessage } from "./events/login";
 import { newGameMessage } from "./events/new_game";
 import { startNextMission } from "./events/start_next_mission";
 import { tileInteraction } from "./events/tile_interaction";
-
+import { getOperatorById } from "../../sessions";
 export function listen(socket: Socket) {
-    function wrap(cb: (socket: Socket,message: any) => void) {
-        return (json: any) => {
+    const userId = socket.id;
+    function wrap(cb: (socket: Socket, message: any, operator: Operator) => void) {
+        return async (json: any) => {
             try {
-               cb(socket, json);
+               await cb(socket, json, await getOperatorById(userId));
             } catch (e) {
                 console.error("Uncaught error", e);
             }

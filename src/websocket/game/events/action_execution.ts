@@ -4,13 +4,12 @@ import { Character } from "../../../models/characters/character";
 import { Operator } from "../../../models/characters/operator";
 import { at } from "../../../models/map/map";
 import { nextCharacterInTurn } from "../../../models/missions/mission";
-import { getOperator, setGame } from "../../../sessions";
+import { setGame } from "../../../sessions";
 import { memberTurnAnnouncement } from "../announcements/member_turn";
 import missionInfoAnnouncement from "../announcements/mission_info";
 
-export async function actionExecution(socket: Socket, { actionId, x1, y1, x2, y2, sig }: { actionId: string, x1: number, y1: number, x2: number, y2: number, sig: string }) {
+export async function actionExecution(socket: Socket, { actionId, x1, y1, x2, y2, sig }: { actionId: string, x1: number, y1: number, x2: number, y2: number, sig: string }, operator: Operator) {
     const action = actionForId(actionId);
-    const operator = await getOperator(socket);
     const game = operator.game;
     const mission = game.activeMission;
     const source = at(mission.map, x1, y1);
