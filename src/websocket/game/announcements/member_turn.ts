@@ -39,6 +39,6 @@ export async function memberTurnAnnouncement(game: Game, turn: Turn) {
 
     actionsForTileAnnouncement(memberOperator, memberTile, InteractionMode.Select, null);
     const [x, y] = coordinatesForTile(game.activeMission.map, memberTile);
-    actionIntention(memberOperator.socket, { actionId: ACTIONS[NAMED_ACTIONS.MOVE].uuid, x, y, sig: null });
+    actionIntention(memberOperator.socket, { actionId: ACTIONS[NAMED_ACTIONS.MOVE].uuid, x, y, sig: null }, memberOperator);
     return true;
 }
