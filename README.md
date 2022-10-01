@@ -16,6 +16,15 @@ Something something cold war tactics 2020s tech but in the 80s when it was futur
 ### Gameplay
 Turn based tactical shooter. Game plays out on a grid. Characters take turns taking actions, which may include attacks, movements, healing, and others TBD. Characters have classes which establish base stats like allowed movement distance and number of action points distributed per turn. They also have experience points which allow finer customization. Lastly, characters have ranks, which limit availabile customizations and also grant passive buffs.
 
+## Running
+
+This will run inside or outside of docker. If you want to use docker, follow the
+instructions from [glowing-fiesta-installer](https://github.com/altintx/glowing-fiesta-installer).
+To run locally, you'll need Redis running and then
+
+1. yarn
+2. yarn serve
+3. (or) yarn servedev
 ## Architecture
 
 ### Sockets
