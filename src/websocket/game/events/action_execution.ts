@@ -19,26 +19,32 @@ export async function actionExecution(socket: Socket, { actionId, x1, y1, x2, y2
 
     const character = <Character>source.occupant
 
+    character.ap = 2; // AP needs stored on mission
+
     if (action.ap > character.ap) {
         return; 
     }
 
     if(action.available(source, destination, action, mission)) {
-        character.ap -= action.ap;
-        setGame(action.execute(source, destination, action, mission, game));
-        if(character.ap === 0) {
-            nextCharacterInTurn(mission, game);
-            memberTurnAnnouncement(game, mission.turns[mission.turn]);
+        try {
+            setGame(action.execute(source, destination, action, mission, game));
+            character.ap -= action.ap;
+            if(character.ap === 0) {
+                nextCharacterInTurn(mission, game);
+                memberTurnAnnouncement(game, mission.turns[mission.turn]);
+            }
+            game.operators.forEach(sendTo => {
+                missionInfoAnnouncement(mission, sendTo);
+            });    
+            socket.emit("action_done", { actionId, sig });
+        } catch (error) {
+            invalidMoveAnnouncement(socket, operator, sig);
         }
-        game.operators.forEach(sendTo => {
-            missionInfoAnnouncement(mission, sendTo);
-        });
-        socket.emit("action_done", { actionId, sig });
     } else {
         invalidMoveAnnouncement(socket, operator, sig);
     }
 }
 function invalidMoveAnnouncement(socket: Socket, operator: Operator, sig: string) {
-    throw new Error("Function not implemented.");
+    socket.emit("action_error", { sig });
 }
 

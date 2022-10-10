@@ -35,12 +35,14 @@ const MOVE: Action = {
         const [x1, y1] = coordinatesForTile(mission.map, source);
         const [x2, y2] = coordinatesForTile(mission.map, destination);
         const distance = Math.floor(Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2)));
-        const movement = Math.floor(distance / action.ap);
-        if(isA(source.occupant, CharacterType) && movement <= (source.occupant as Character).ap) {
-            (source.occupant as Character).ap -= movement;
+        const speed = 5;
+        const movementCost = Math.ceil(distance / speed);
+        if(isA(source.occupant, CharacterType) && movementCost <= (source.occupant as Character).ap) {
             destination.occupant = source.occupant;
             source.occupant = null;
             return game;
+        } else {
+            throw new Error("Requirements for move not met");
         }
     }
 }

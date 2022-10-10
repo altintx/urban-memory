@@ -14,14 +14,14 @@ let sessions = {
     operators: operatorMap,
     games: gamesMap
 };
-export async function registerOperator(operator: Operator): Promise<void> {
+export async function registerOperator(operator: Operator, uuid: string): Promise<void> {
     const key = `operator:socket:${operator.socket.id}`;
     const key2 = `operator:${operator.operatorId}`;
     const payload = JSON.stringify(serializeOperator(operator));
     await redisReady;
     await client.set(key, payload);
     await client.set(key2, payload);
-    sessions.operators[operator.socket.id] = operator;
+    sessions.operators[uuid] = operator;
 }
 
 export async function loadOperator(uuid:string): Promise<Operator | null> {
@@ -35,8 +35,8 @@ export async function loadOperator(uuid:string): Promise<Operator | null> {
     }
 }
 
-export async function getOperatorById(socketId: string): Promise<Operator> {
-    return sessions.operators[socketId];
+export async function getOperatorById(_socketId: string, operatorId: string): Promise<Operator> {
+    return sessions.operators[operatorId];
 }
 
 export async function endGame(game:Game): Promise<boolean> {

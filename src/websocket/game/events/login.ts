@@ -5,6 +5,6 @@ import loggedInAnnouncement from "../announcements/logged_in";
 
 export async function loginMessage(socket: Socket, { name, operatorId }: { name: string, operatorId: string }) {
     const operator = newOperator(socket, name, operatorId);
-    await registerOperator(operator);
+    await registerOperator(operator, socket.handshake.auth.token);
     loggedInAnnouncement(operator);
 }

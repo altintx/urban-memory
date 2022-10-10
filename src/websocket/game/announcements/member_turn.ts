@@ -6,7 +6,7 @@ import { serializeOperator } from "../../../models/characters/operator";
 import { Game } from "../../../models/game";
 import { coordinatesForTile, tileFor } from "../../../models/map/map";
 import { Turn } from "../../../models/missions/turn";
-import { loadCharacter, operatorForCharacter } from "../../../sessions";
+import { cacheCharacter, loadCharacter, operatorForCharacter } from "../../../sessions";
 import { actionIntention } from "../events/action_intention";
 import actionsForTileAnnouncement from "./actions_for_tile";
 import styleTileAnnouncement from "./style_tile";
@@ -15,6 +15,9 @@ import tileInteractionAnnouncement from "./tile_interaction";
 export async function memberTurnAnnouncement(game: Game, turn: Turn) {
     const characterUuid = turn.members[turn.member];
     const character = await loadCharacter(characterUuid);
+    character.ap += 2;
+    await cacheCharacter(character);
+
     const memberOperator = await operatorForCharacter(character);
     const memberTile = tileFor(game.activeMission.map, character);
 
