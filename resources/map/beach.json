@@ -13,55 +13,78 @@
             "elevation": 0,
             "cover": "None",
             "openable": false,
-            "textures": [{ "graphic": "water", "animation": [
-                { "graphic": "waves", "direction": "down", "total": 4, "ms": 5000 }
-            ], "offset": [0, 0, 0 ]}]
+            "textures": [{
+                    "graphic": "themes/default/textures/water.png",
+                    "animation": [
+                        {
+                            "graphic": "themes/default/textures/wave.png",
+                            "direction": "down",
+                            "total": 4,
+                            "ms": 5000
+                        }
+                    ],
+                    "offset": [0, 0, 0 ]
+            }]
         },
         "sand": {
             "elevation": 0,
             "cover": "None",
             "openable": false,
-            "textures": [{ "graphic": "sand", "animation": [], "offset": [0, 0, 0 ]}]
+            "textures": [
+                {
+                    "graphic": "themes/default/textures/sand.png",
+                    "animation": [],
+                    "offset": [0, 0, 0 ]
+                }
+            ]
         },
         "grass": {
             "elevation": 0,
             "cover": "None",
             "openable": false,
-            "textures": [{ "graphic": "grass", "animation": [], "offset": [0, 0, 0 ]}]
+            "textures": [
+                {
+                    "graphic": "themes/default/textures/grass.png",
+                    "animation": [],
+                    "offset": [0, 0, 0 ]
+                }
+            ]
 
         },
         "asphalt": {
             "elevation": 0,
             "cover": "None",
             "openable": false,
-            "textures": [{ "graphic": "asphalt", "animation": [], "offset": [0, 0, 0 ]}]
+            "textures": [{ "graphic": "themes/default/textures/asphalt.png", "animation": [], "offset": [0, 0, 0 ]}]
         },
         "asphalt_striped_road": {
             "elevation": 0,
             "cover": "None",
             "openable": false,
-            "textures": [{ "graphic": "asphalt", "animation": [], "offset": [0, 0, 0 ]}],
-
-            "obstacle": {
-                "name": {
-                    "en": "yellow striped road"
+            "textures": [
+                {
+                    "graphic": "themes/default/textures/asphalt.png", 
+                    "animation": [], 
+                    "offset": [0, 0, 0 ]
                 },
-                "destructable": false,
-                "destructive": false,
-                "visible": true,
-                "destroyed": false,
-                "coverBonus": 0,
-                "width": 1,
-                "height": 1,
-                "textures": [{ "graphic": "sprites/stripe", "animation": [], "offset": [0, 0, 0]}]
-            }
+                {
+                    "graphic": "sprites/stripe.png",
+                    "animation": [],
+                    "offset": [0,0,0]
+                }
+            ]
         },
         "cement": {
             "elevation": 0,
             "cover": "None",
             "openable": false,
-            "textures": [{ "graphic": "cement", "animation": [], "offset": [0, 0, 0 ]}]
-
+            "textures": [
+                { 
+                    "graphic": "themes/default/textures/cement.png",
+                    "animation": [],
+                    "offset": [0, 0, 0 ]
+                }
+            ]
         }
     },
     "grid": [
@@ -83,7 +106,7 @@
                 "coverBonus": 1,
                 "width": 1,
                 "height": 1,
-                "textures": [{ "graphic": "../boulder", "animation": [], "offset": [0, 0, 0]}]
+                "textures": [{ "graphic": "themes/default/sprites/small-rock.png", "animation": [], "offset": [0, 0, 0]}]
             }
         },
         "water",
